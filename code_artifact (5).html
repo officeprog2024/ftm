@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مبادرة قارئ اليوم قائد الغد | معاينة وطباعة</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&family=Alexandria:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Definition of GE SS Two Light */
+        @font-face {
+            font-family: "GE SS Two Light";
+            src: url("https://db.onlinewebfonts.com/t/02f502e5eefeb353e5f83fc5045348dc.woff2") format("woff2"),
+                 url("https://db.onlinewebfonts.com/t/02f502e5eefeb353e5f83fc5045348dc.woff") format("woff"),
+                 local("GE SS Two Light"),
+                 local("GE SS Two"),
+                 local("GESSTwoLight-Light");
+            font-weight: 300 400;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        /* CSS Variables for Dynamic Customization */
+        :root {
+            --font-main: 'Tajawal', sans-serif;
+            --font-scale: 1;
+            /* Default margins: 5mm top/bottom, 10mm sides */
+            --page-margin-y: 5mm;
+            --page-margin-x: 10mm;
+        }
+
+        /* Fixed display interface styling - Always locked to Cairo */
+        body, header, .no-print, input:not(.a4-page input), select:not(.a4-page select), button:not(.a4-page button) {
+            font-family: 'Cairo', sans-serif !important;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+
+        /* Target typography specifically on preview and printable pages */
+        #printArea {
+            font-family: var(--font-main);
+            font-size: calc(1rem * var(--font-scale));
+        }
+
+        .a4-page, 
+        .a4-page input, 
+        .a4-page textarea, 
+        .a4-page button, 
+        .a4-page select {
+            font-family: var(--font-main) !important;
+        }
+
+        /* Typography sizing classes applied to #printArea */
+        #printArea.size-small { --font-scale: 0.85; }
+        #printArea.size-medium { --font-scale: 1; }
+        #printArea.size-large { --font-scale: 1.15; }
+
+        /* Proportional text scaling across all typography elements */
+        #printArea .text-\[10px\] { font-size: calc(10px * var(--font-scale)) !important; }
+        #printArea .text-\[11px\] { font-size: calc(11px * var(--font-scale)) !important; }
+        #printArea .text-xs { font-size: calc(0.75rem * var(--font-scale)) !important; line-height: calc(1.15rem * var(--font-scale)) !important; }
+        #printArea .text-sm { font-size: calc(0.875rem * var(--font-scale)) !important; line-height: calc(1.25rem * var(--font-scale)) !important; }
+        #printArea .text-base { font-size: calc(1rem * var(--font-scale)) !important; line-height: calc(1.5rem * var(--font-scale)) !important; }
+        #printArea .text-lg { font-size: calc(1.125rem * var(--font-scale)) !important; line-height: calc(1.6rem * var(--font-scale)) !important; }
+        #printArea .text-xl { font-size: calc(1.25rem * var(--font-scale)) !important; line-height: calc(1.75rem * var(--font-scale)) !important; }
+        #printArea .text-2xl { font-size: calc(1.5rem * var(--font-scale)) !important; line-height: calc(1.9rem * var(--font-scale)) !important; }
+        #printArea .text-3xl { font-size: calc(1.875rem * var(--font-scale)) !important; line-height: calc(2.25rem * var(--font-scale)) !important; }
+        #printArea .text-4xl { font-size: calc(2.25rem * var(--font-scale)) !important; line-height: calc(2.6rem * var(--font-scale)) !important; }
+        #printArea .text-5xl { font-size: calc(3rem * var(--font-scale)) !important; line-height: calc(3.2rem * var(--font-scale)) !important; }
+        #printArea .text-6xl { font-size: calc(3.75rem * var(--font-scale)) !important; line-height: calc(4rem * var(--font-scale)) !important; }
+
+        /* Proportional input & textarea typography */
+        #printArea input, 
+        #printArea textarea, 
+        #printArea select, 
+        #printArea table td, 
+        #printArea table th {
+            font-size: calc(0.875rem * var(--font-scale));
+        }
+
+        /* Font Family classes applied to #printArea */
+        #printArea.font-tajawal { --font-main: 'Tajawal', sans-serif; }
+        #printArea.font-cairo { --font-main: 'Cairo', sans-serif; }
+        #printArea.font-almarai { --font-main: 'Almarai', sans-serif; }
+        #printArea.font-amiri { --font-main: 'Amiri', serif; }
+        #printArea.font-alexandria { --font-main: 'Alexandria', sans-serif; }
+        #printArea.font-gess { --font-main: 'GE SS Two Light', 'Cairo', sans-serif; }
+
+        /* A4 Page Exact Simulation (210mm x 297mm Portrait) */
+        @page {
+            size: A4 portrait;
+            margin: 0;
+        }
+
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            min-height: 297mm;
+            max-height: 297mm;
+            padding: var(--page-margin-y) var(--page-margin-x);
+            margin: 0 auto 30px auto;
+            background: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            position: relative;
+            page-break-after: always;
+            page-break-inside: avoid;
+            break-after: page;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Continuous Scroll View Modifier */
+        .continuous-mode .a4-page {
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        /* THEME 1: Creative & Cheerful (School & Kids Friendly) */
+        .theme-creative {
+            --primary: #4f46e5;
+            --primary-light: #e0e7ff;
+            --accent: #ec4899;
+            --accent-light: #fce7f3;
+            --gold: #f59e0b;
+            --paper-border: #818cf8;
+            --card-bg: #f8fafc;
+        }
+
+        .theme-creative .page-frame {
+            border: 3px double #a5b4fc;
+            outline: 10px solid #f5f3ff;
+            border-radius: 20px;
+        }
+
+        .theme-creative .primary-badge {
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            color: white;
+        }
+
+        .theme-creative .header-glow {
+            background: linear-gradient(135deg, #eef2ff 0%, #fae8ff 100%);
+        }
+
+        /* THEME 2: Classic Regal & Official (Formal Excellence) */
+        .theme-royal {
+            --primary: #0f172a;
+            --primary-light: #f1f5f9;
+            --accent: #b45309;
+            --accent-light: #fef3c7;
+            --gold: #d97706;
+            --paper-border: #b45309;
+            --card-bg: #fafaf9;
+        }
+
+        .theme-royal .page-frame {
+            border: 2px solid #b45309;
+            outline: 6px solid #fef3c7;
+            border-radius: 6px;
+        }
+
+        .theme-royal .primary-badge {
+            background: linear-gradient(135deg, #1e293b, #0f172a);
+            color: #fef3c7;
+            border: 1px solid #d97706;
+        }
+
+        .theme-royal .header-glow {
+            background: linear-gradient(135deg, #f8fafc 0%, #fef3c7 100%);
+        }
+
+        /* Dotted Cut Lines for Vouchers & Cards */
+        .cut-line {
+            border: 2px dashed #94a3b8;
+            position: relative;
+        }
+        .cut-line::after {
+            content: '✂ قص هنا';
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #fff;
+            padding: 0 8px;
+            font-size: 11px;
+            color: #64748b;
+            font-weight: bold;
+        }
+
+        /* Printable Star Rating System */
+        .star-item {
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: color 0.15s ease;
+        }
+        .star-item.active {
+            color: #f59e0b;
+        }
+
+        /* Free Live Edit Mode Styles */
+        .edit-mode-active [contenteditable="true"] {
+            outline: none;
+            cursor: text;
+        }
+
+        .edit-mode-active h1:hover,
+        .edit-mode-active h2:hover,
+        .edit-mode-active h3:hover,
+        .edit-mode-active p:hover,
+        .edit-mode-active span:not(.no-edit):hover,
+        .edit-mode-active td:hover,
+        .edit-mode-active th:hover,
+        .edit-mode-active div:not(.no-edit):hover {
+            outline: 1.5px dashed #6366f1 !important;
+            outline-offset: 2px;
+            background-color: rgba(238, 242, 255, 0.4);
+            border-radius: 4px;
+        }
+
+        .edit-mode-active *:focus {
+            outline: 2px solid #4f46e5 !important;
+            outline-offset: 2px;
+            background-color: #ffffff !important;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+            border-radius: 4px;
+        }
+
+        /* Print Specific Rules */
+        @media print {
+            html, body {
+                background: #ffffff !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 210mm !important;
+                height: auto !important;
+                overflow: visible !important;
+            }
+
+            .no-print {
+                display: none !important;
+                height: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* Reset print area layout to prevent blank first page */
+            #printArea {
+                padding: 0 !important;
+                margin: 0 !important;
+                max-width: none !important;
+                width: 210mm !important;
+                display: block !important;
+                background: transparent !important;
+                font-family: var(--font-main) !important;
+                outline: none !important;
+            }
+
+            #printArea * {
+                outline: none !important;
+                box-shadow: none !important;
+            }
+
+            .a4-page {
+                width: 210mm !important;
+                height: 297mm !important;
+                min-height: 297mm !important;
+                max-height: 297mm !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border-radius: 0 !important;
+                box-sizing: border-box !important;
+                padding: var(--page-margin-y) var(--page-margin-x) !important;
+                overflow: hidden !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+                page-break-before: avoid !important;
+                break-before: avoid !important;
+            }
+
+            /* Strict page breaks: only between pages, none after the last page */
+            .a4-page:not(:last-child) {
+                page-break-after: always !important;
+                break-after: page !important;
+            }
+
+            .a4-page:last-child {
+                page-break-after: auto !important;
+                break-after: auto !important;
+            }
+
+            .page-frame {
+                outline-width: 4px !important;
+            }
+
+            /* Preserve background colors */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <header class="no-print sticky top-0 z-50 bg-white/95 backdrop-blur shadow-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 py-3 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+            
+            <!-- Left Info -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md">
+                    <i class="fa-solid fa-book-open-reader text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-gray-900 text-base leading-tight">مبادرة قارئ اليوم قائد الغد</h1>
+                    <p class="text-xs text-gray-500">معاينة وطباعة A4 (طولي) مع تحكم كامل بالهوامش والخطوط</p>
+                </div>
+            </div>
+
+            <!-- Central Customization Controls -->
+            <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
+                
+                <!-- Theme Selector -->
+                <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <span class="text-slate-600 font-semibold px-1"><i class="fa-solid fa-palette ml-1"></i>النموذج:</span>
+                    <button id="themeCreativeBtn" onclick="setTheme('theme-creative')" class="px-2.5 py-1 rounded-md font-semibold transition bg-indigo-600 text-white shadow-sm">إبداعي مدرسي</button>
+                    <button id="themeRoyalBtn" onclick="setTheme('theme-royal')" class="px-2.5 py-1 rounded-md font-semibold transition text-slate-700 hover:bg-white">رسمي أنيق</button>
+                </div>
+
+                <!-- Font Family -->
+                <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <span class="text-slate-600 font-semibold px-1"><i class="fa-solid fa-font ml-1"></i>الخط:</span>
+                    <select id="fontSelect" onchange="changeFont(this.value)" class="bg-white rounded px-2 py-1 border border-slate-300 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 font-semibold">
+                        <option value="font-gess">GE SS Two Light</option>
+                        <option value="font-tajawal" selected>تجوال (Tajawal)</option>
+                        <option value="font-cairo">كايرو (Cairo)</option>
+                        <option value="font-almarai">المراعي (Almarai)</option>
+                        <option value="font-alexandria">الإسكندرية (Alexandria)</option>
+                        <option value="font-amiri">أميري كلاسيك (Amiri)</option>
+                    </select>
+                </div>
+
+                <!-- Font Size -->
+                <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <span class="text-slate-600 font-semibold px-1"><i class="fa-solid fa-text-height ml-1"></i>الحجم:</span>
+                    <button onclick="setFontSize('size-small')" id="btnSizeSmall" class="px-2 py-1 rounded hover:bg-white text-slate-700 transition">صغير</button>
+                    <button onclick="setFontSize('size-medium')" id="btnSizeMed" class="px-2 py-1 rounded bg-indigo-600 text-white font-bold transition">متوسط</button>
+                    <button onclick="setFontSize('size-large')" id="btnSizeLarge" class="px-2 py-1 rounded hover:bg-white text-slate-700 transition">كبير</button>
+                </div>
+
+                <!-- Margins Selector -->
+                <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <span class="text-slate-600 font-semibold px-1"><i class="fa-solid fa-arrows-up-down-left-right ml-1"></i>الهوامش:</span>
+                    <select id="marginPresetSelect" onchange="applyMarginPreset(this.value)" class="bg-white rounded px-2 py-1 border border-slate-300 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500 font-medium">
+                        <option value="default" selected>افتراضي (علوي/سفلي 5mm • جانبي 10mm)</option>
+                        <option value="compact">ضيق (علوي/سفلي 3mm • جانبي 5mm)</option>
+                        <option value="balanced">متوازن (علوي/سفلي 8mm • جانبي 12mm)</option>
+                        <option value="wide">عريض (علوي/سفلي 12mm • جانبي 15mm)</option>
+                        <option value="custom">مخصص...</option>
+                    </select>
+                    
+                    <!-- Custom Margin Inputs (shown when custom is selected) -->
+                    <div id="customMarginInputs" class="hidden items-center gap-1 pr-1 border-r border-slate-300">
+                        <label class="text-[11px] text-slate-500 font-bold">ع/س:</label>
+                        <input id="customMarginY" type="number" min="0" max="30" value="5" onchange="applyCustomMargins()" class="w-11 bg-white border border-slate-300 rounded px-1 py-0.5 text-xs text-center">
+                        <span class="text-[10px] text-slate-400">مم</span>
+                        <label class="text-[11px] text-slate-500 font-bold mr-1">جانبي:</label>
+                        <input id="customMarginX" type="number" min="0" max="40" value="10" onchange="applyCustomMargins()" class="w-11 bg-white border border-slate-300 rounded px-1 py-0.5 text-xs text-center">
+                        <span class="text-[10px] text-slate-400">مم</span>
+                    </div>
+                </div>
+
+                <!-- Page Jump / Navigation Dropdown -->
+                <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-lg border border-slate-200">
+                    <select onchange="scrollToPage(this.value)" class="bg-white rounded px-2 py-1 border border-slate-300 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        <option value="" disabled selected>الانتقال لصفحة...</option>
+                        <option value="page-1">1. غلاف المبادرة</option>
+                        <option value="page-2">2. بطاقة المبادرة</option>
+                        <option value="page-3">3. أهداف المبادرة</option>
+                        <option value="page-4">4. أنشطة المبادرة</option>
+                        <option value="page-5">5. بطاقة قارئة اليوم</option>
+                        <option value="page-6">6. ماذا قرأت اليوم؟</option>
+                        <option value="page-7">7. نجمات القراءة</option>
+                        <option value="page-8">8. أنا أحكي قصتي</option>
+                        <option value="page-9">9. صندوق الحكايات</option>
+                        <option value="page-10">10. شهادة قارئة متميزة</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- Print Actions & Live Edit Toggle -->
+            <div class="flex items-center gap-2">
+                <button id="resetBtn" onclick="openResetModal()" class="inline-flex items-center gap-1.5 bg-slate-100 hover:bg-rose-50 hover:text-rose-700 text-slate-700 font-bold px-3 py-2 rounded-xl border border-slate-300 shadow-sm transition transform active:scale-95 text-xs sm:text-sm" title="الرجوع إلى المحتوى والنصوص الأصلية للمبادرة">
+                    <i class="fa-solid fa-arrow-rotate-left text-sm text-slate-500"></i>
+                    <span>استعادة النسخة الأصلية</span>
+                </button>
+
+                <button id="editModeBtn" onclick="toggleEditMode()" class="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95 text-xs sm:text-sm" title="اضغط لتعديل أي نص أو عنوان أو اسم مباشرة">
+                    <i id="editModeIcon" class="fa-solid fa-pen-to-square text-base"></i>
+                    <span id="editModeText">تفعيل التعديل المباشر</span>
+                </button>
+
+                <button onclick="window.print()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl shadow-md transition transform active:scale-95">
+                    <i class="fa-solid fa-print text-base"></i>
+                    <span>طباعة الملف (A4)</span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Notification Banner when Live Edit is Active -->
+        <div id="editNoticeBanner" class="hidden bg-gradient-to-r from-amber-500 via-indigo-600 to-indigo-700 text-white py-1.5 px-4 text-center text-xs font-bold shadow-inner">
+            <div class="max-w-7xl mx-auto flex items-center justify-center gap-2">
+                <i class="fa-solid fa-wand-magic-sparkles animate-pulse"></i>
+                <span>وضع التحرير الحر مفعل: اضغط على أي نص أو عنوان أو فقرة في المعاينة لتعديلها فوراً، ثم انقر "حفظ وتثبيت التعديل" عند الانتهاء.</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Custom Modal for Confirming Content Reset -->
+    <div id="resetModal" class="no-print hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4 transition-opacity">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 text-center border border-slate-200 transform transition-all">
+            <div class="w-14 h-14 rounded-full bg-rose-100 text-rose-600 mx-auto flex items-center justify-center text-2xl mb-4 shadow-inner">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <h3 class="text-lg font-black text-slate-800 mb-2">استعادة النسخة الأصلية</h3>
+            <p class="text-sm font-semibold text-slate-600 leading-relaxed mb-6">
+                هل أنت متأكد من رغبتك في استعادة المحتوى الأصلي للمبادرة؟<br>
+                <span class="text-xs text-rose-600 font-bold block mt-1">تنبيه: سيتم التراجع عن أي كتابات أو تعديلات قمت بإجرائها على الصفحات.</span>
+            </p>
+            <div class="flex items-center justify-center gap-3">
+                <button onclick="restoreOriginalContent()" class="bg-rose-600 hover:bg-rose-700 text-white font-bold px-5 py-2.5 rounded-xl shadow-md transition transform active:scale-95 text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>نعم، استعادة الآن</span>
+                </button>
+                <button onclick="closeResetModal()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-5 py-2.5 rounded-xl transition text-sm">
+                    إلغاء الأمر
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification for Action Confirmation -->
+    <div id="toastNotification" class="no-print fixed bottom-5 left-1/2 -translate-x-1/2 z-50 hidden bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl items-center gap-3 text-sm font-bold border border-slate-700 transition">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+        <span id="toastMessage">تمت استعادة النسخة الأصلية بنجاح</span>
+    </div>
+
+    <main id="printArea" class="theme-creative size-medium font-tajawal py-8 px-2 sm:px-4 max-w-5xl mx-auto flex flex-col items-center">
+
+        <!-- ========================================================
+             صفحة 1: غلاف المبادرة
+        ======================================================== -->
+        <article id="page-1" class="a4-page page-frame relative bg-white">
+            <!-- Top Header Corner Badges -->
+            <div class="flex justify-between items-center text-xs font-semibold text-slate-500 border-b border-slate-200 pb-3">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+                    <span>المملكة العربية السعودية • وزارة التعليم</span>
+                </div>
+                <span>الابتدائية الخامسة ببحرة المجاهدين</span>
+            </div>
+
+            <!-- Center Cover Content -->
+            <div class="my-auto text-center flex flex-col items-center justify-center py-6 px-4">
+                
+                <!-- Visual Book Graphic -->
+                <div class="relative mb-6">
+                    <div class="w-32 h-32 rounded-3xl bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-inner border border-indigo-100">
+                        <i class="fa-solid fa-book-open text-6xl"></i>
+                    </div>
+                    <span class="absolute -bottom-2 -right-2 bg-amber-400 text-white p-2 rounded-full shadow-lg">
+                        <i class="fa-solid fa-star text-lg"></i>
+                    </span>
+                    <span class="absolute -top-2 -left-2 bg-pink-500 text-white p-2 rounded-full shadow-lg">
+                        <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                    </span>
+                </div>
+
+                <!-- Main Titles -->
+                <div class="inline-block px-5 py-2 rounded-full primary-badge text-sm sm:text-base font-bold shadow mb-4">
+                    مبادرة قرائية لطالبات الصف الثاني الابتدائي
+                </div>
+
+                <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-slate-800 mb-4 leading-tight">
+                    قارئ اليوم قائد الغد
+                </h1>
+
+                <!-- Slogan Quote Box -->
+                <div class="header-glow border-r-4 border-indigo-500 py-3 px-6 rounded-lg my-4 max-w-lg shadow-sm">
+                    <p class="text-xl sm:text-2xl font-extrabold text-indigo-900 tracking-wide">
+                        « أقرأ اليوم لأقود غدًا »
+                    </p>
+                </div>
+
+                <!-- 4 Action Pills -->
+                <div class="flex flex-wrap justify-center gap-3 my-6">
+                    <span class="bg-indigo-100 text-indigo-800 px-4 py-1.5 rounded-full font-bold text-sm shadow-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-glasses text-indigo-500"></i> نقرأ
+                    </span>
+                    <span class="bg-pink-100 text-pink-800 px-4 py-1.5 rounded-full font-bold text-sm shadow-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-lightbulb text-pink-500"></i> نتعلم
+                    </span>
+                    <span class="bg-amber-100 text-amber-800 px-4 py-1.5 rounded-full font-bold text-sm shadow-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-comments text-amber-500"></i> نحكي
+                    </span>
+                    <span class="bg-emerald-100 text-emerald-800 px-4 py-1.5 rounded-full font-bold text-sm shadow-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-rocket text-emerald-500"></i> نبدع
+                    </span>
+                </div>
+
+            </div>
+
+            <!-- Footer Supervisors & School Leadership -->
+            <div class="grid grid-cols-2 gap-4 pt-6 border-t-2 border-dashed border-slate-200 text-center">
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <p class="text-xs text-slate-500 font-semibold mb-1">المعلمة المشرفة</p>
+                    <p class="text-base font-extrabold text-slate-800">فاطمة الحربي</p>
+                </div>
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <p class="text-xs text-slate-500 font-semibold mb-1">قائدة المدرسة</p>
+                    <p class="text-base font-extrabold text-slate-800">علوية السيد</p>
+                </div>
+            </div>
+        </article>
+
+        <!-- ========================================================
+             صفحة 2: بطاقة المبادرة
+        ======================================================== -->
+        <article id="page-2" class="a4-page page-frame bg-white">
+            <!-- Header -->
+            <div class="text-center pb-4 border-b border-slate-200">
+                <span class="inline-block px-4 py-1 text-xs font-bold rounded-full bg-emerald-100 text-emerald-800 mb-2">
+                    <i class="fa-solid fa-circle-check ml-1"></i> جاهزة للطباعة والتصوير
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-800">بطاقة المبادرة التعريفية</h2>
+                <p class="text-xs text-slate-500 mt-1">الهوية الكاملة لمبادرة تنمية القراءة والقيادة</p>
+            </div>
+
+            <!-- Body Details Cards Grid -->
+            <div class="flex-1 flex flex-col justify-around py-4 gap-3.5">
+                
+                <!-- 1. Name -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-600 text-white flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-tag"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider block">اسم المبادرة</span>
+                        <h3 class="text-lg font-black text-slate-900">قارئ اليوم قائد الغد</h3>
+                    </div>
+                </div>
+
+                <!-- 2. Target Audience -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-pink-600 text-white flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-pink-600 uppercase tracking-wider block">الفئة المستهدفة</span>
+                        <p class="text-base font-bold text-slate-800">طالبات الصف الثاني الابتدائي</p>
+                    </div>
+                </div>
+
+                <!-- 3. Core Idea -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500 text-white flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-amber-600 uppercase tracking-wider block">الفكرة الجوهرية</span>
+                        <p class="text-base font-semibold text-slate-800 leading-relaxed">
+                            غرس حب القراءة وتحويلها إلى عادة يومية ممتعة تثري عقول الصغيرات وتبني ثقتهن بأنفسهن.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Duration -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-teal-600 text-white flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-teal-600 uppercase tracking-wider block">المدة الزمنية</span>
+                        <p class="text-base font-bold text-slate-800">عام دراسي كامل</p>
+                    </div>
+                </div>
+
+                <!-- 5. Slogan -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-purple-600 text-white flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-purple-600 uppercase tracking-wider block">شعار المبادرة</span>
+                        <p class="text-lg font-black text-purple-900">« أقرأ اليوم لأقود غدًا »</p>
+                    </div>
+                </div>
+
+                <!-- 6. Supervision -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block">الإشراف والمتابعة</span>
+                        <p class="text-base font-bold text-slate-800">المعلمة: فاطمة الحربي</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Card Bottom Footer -->
+            <div class="text-center text-xs text-slate-400 pt-3 border-t border-slate-200">
+                مبادرة قارئ اليوم قائد الغد • الصف الثاني الابتدائي
+            </div>
+        </article>
+
+        <!-- ========================================================
+             صفحة 3: أهداف المبادرة
+        ======================================================== -->
+        <article id="page-3" class="a4-page page-frame bg-white">
+            <!-- Header -->
+            <div class="text-center pb-4 border-b border-slate-200">
+                <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 mx-auto flex items-center justify-center text-2xl mb-2 shadow-inner">
+                    <i class="fa-solid fa-bullseye"></i>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-800">أهداف المبادرة</h2>
+                <div class="header-glow inline-block px-4 py-1.5 rounded-full text-indigo-900 font-bold text-sm mt-2 border border-indigo-200">
+                    « تجعل القراءة عادة جميلة كل يوم »
+                </div>
+            </div>
+
+            <!-- Objectives List -->
+            <div class="flex-1 flex flex-col justify-around py-4 space-y-3">
+                
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition border border-slate-200">
+                    <span class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-black shrink-0 text-base shadow">1</span>
+                    <p class="text-base font-bold text-slate-800 leading-relaxed">
+                        تنمية حب القراءة والاطلاع المستمر لدى الطالبات منذ سن مبكرة.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition border border-slate-200">
+                    <span class="w-10 h-10 rounded-full bg-pink-600 text-white flex items-center justify-center font-black shrink-0 text-base shadow">2</span>
+                    <p class="text-base font-bold text-slate-800 leading-relaxed">
+                        رفع مستوى الفهم القرائي والقدرة على التعبير اللغوي السليم.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition border border-slate-200">
+                    <span class="w-10 h-10 rounded-full bg-amber-500 text-white flex items-center justify-center font-black shrink-0 text-base shadow">3</span>
+                    <p class="text-base font-bold text-slate-800 leading-relaxed">
+                        تشجيع الطالبة على مشاركة ما قرأته بجرأة واعتزاز أمام زميلاتها.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition border border-slate-200">
+                    <span class="w-10 h-10 rounded-full bg-emerald-600 text-white flex items-center justify-center font-black shrink-0 text-base shadow">4</span>
+                    <p class="text-base font-bold text-slate-800 leading-relaxed">
+                        تنمية الثقة بالنفس والقدرة على التحدث والإلقاء أمام الجمهور.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition border border-slate-200">
+                    <span class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center font-black shrink-0 text-base shadow">5</span>
+                    <p class="text-base font-bold text-slate-800 leading-relaxed">
+                        اكتشاف الميول والاهتمامات القرائية المختلفة وتوجيهها بشكل إيجابي.
+                    </p>
+                </div>
+
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-slate-100 transition border border-slate-200">
+                    <span class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-black shrink-0 text-base shadow">6</span>
+                    <p class="text-base font-bold text-slate-800 leading-relaxed">
+                        ربط القراءة بالإبداع وصناعة شخصية القائدة المستقلة الطموحة.
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Encouragement Box -->
+            <div class="bg-indigo-50 border border-indigo-200 rounded-xl p-3 text-center text-xs font-semibold text-indigo-900">
+                <i class="fa-solid fa-sparkles text-amber-500 ml-1"></i> بالقراءة نسمو، وبالعلم نقود غدنا المشرق
+            </div>
+        </article>
+
+        <!-- ========================================================
+             صفحة 4: أنشطة المبادرة
+        ======================================================== -->
+        <article id="page-4" class="a4-page page-frame bg-white">
+            <!-- Header -->
+            <div class="text-center pb-4 border-b border-slate-200">
+                <span class="inline-block px-4 py-1 text-xs font-bold rounded-full bg-purple-100 text-purple-800 mb-2">
+                    <i class="fa-solid fa-shapes ml-1"></i> داخل الصف المدرسي
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-800">أنشطة المبادرة</h2>
+                <p class="text-sm font-semibold text-indigo-600 mt-1">أنشطة قصيرة وممتعة داخل الصف</p>
+            </div>
+
+            <!-- Activities Grid / Cards -->
+            <div class="flex-1 flex flex-col justify-around py-4 gap-3">
+                
+                <!-- Activity 1 -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border-r-4 border-r-indigo-500 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-user-graduate"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-slate-900">قارئة اليوم</h3>
+                        <p class="text-sm font-semibold text-slate-600 mt-1">اختيار طالبة يوميًا لتشارك قراءتها الممتعة مع الصف.</p>
+                    </div>
+                </div>
+
+                <!-- Activity 2 -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border-r-4 border-r-pink-500 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-pink-100 text-pink-700 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-comment-dots"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-slate-900">أنا أحكي قصتي</h3>
+                        <p class="text-sm font-semibold text-slate-600 mt-1">تحكي الطالبة قصة قصيرة بأسلوبها وتعبيرها الخاص المبدع.</p>
+                    </div>
+                </div>
+
+                <!-- Activity 3 -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border-r-4 border-r-amber-500 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-box-archive"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-slate-900">صندوق الحكايات</h3>
+                        <p class="text-sm font-semibold text-slate-600 mt-1">بطاقات قصص وأسئلة شيقة ومشوقة للقراءة والمشاركة الجماعية.</p>
+                    </div>
+                </div>
+
+                <!-- Activity 4 -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border-r-4 border-r-yellow-500 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-yellow-100 text-yellow-700 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-slate-900">نجمة القراءة</h3>
+                        <p class="text-sm font-semibold text-slate-600 mt-1">نجمة تميز وتكريم للطالبة المنتظمة في القراءة والاطلاع المستمر.</p>
+                    </div>
+                </div>
+
+                <!-- Activity 5 -->
+                <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border-r-4 border-r-emerald-500 border border-slate-200">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl shrink-0">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-base font-black text-slate-900">قارئة تقود</h3>
+                        <p class="text-sm font-semibold text-slate-600 mt-1">تقدم الطالبة معلومة مفيدة أو فكرة رائدة تعلمتها من قراءاتها.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Motivation note -->
+            <div class="text-center text-xs text-slate-500 pt-3 border-t border-slate-200">
+                أنشطة تفاعلية تدمج بين الترفيه، التحدث الجريء، وبناء الفكر القيادي
+            </div>
+        </article>
+
+        <!-- ========================================================
+             صفحة 5: بطاقة قارئة اليوم (تقص وتسلم للطالبة)
+        ======================================================== -->
+        <article id="page-5" class="a4-page page-frame bg-white">
+            <!-- Header -->
+            <div class="text-center pb-3 border-b border-slate-200">
+                <span class="inline-block px-3 py-1 text-xs font-bold rounded-full bg-pink-100 text-pink-700 mb-1">
+                    <i class="fa-solid fa-scissors ml-1"></i> تقص وتسلّم للطالبة
+                </span>
+                <h2 class="text-2xl font-black text-slate-800">بطاقات «قارئة اليوم»</h2>
+                <p class="text-xs text-slate-500">بطاقتان جاهزتان للكتابة والتوزيع الفوري تشجيعًا للمتميزات</p>
+            </div>
+
+            <!-- Two Cuttable Cards -->
+            <div class="flex-1 flex flex-col justify-around py-4 gap-6">
+                
+                <!-- Card 1 -->
+                <div class="cut-line rounded-2xl p-5 bg-gradient-to-br from-indigo-50/50 to-pink-50/40 border-2 border-dashed border-indigo-300 relative shadow-sm">
+                    <div class="flex items-center justify-between border-b border-indigo-200 pb-2 mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm font-bold">
+                                <i class="fa-solid fa-award"></i>
+                            </span>
+                            <span class="font-extrabold text-lg text-indigo-900">قارئة اليوم</span>
+                        </div>
+                        <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2.5 py-1 rounded-full">
+                            ★ تميز قرائي ★
+                        </span>
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-slate-700 shrink-0">اسم الطالبة:</span>
+                            <div class="flex-1 border-b-2 border-dotted border-slate-400 h-6"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-slate-700 shrink-0">قرأت اليوم:</span>
+                            <div class="flex-1 border-b-2 border-dotted border-slate-400 h-6"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-slate-700 shrink-0">أجمل شيء تعلمته:</span>
+                            <div class="flex-1 border-b-2 border-dotted border-slate-400 h-6"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-indigo-100 flex items-center justify-between text-xs font-bold text-indigo-700">
+                        <span class="flex items-center gap-1.5"><i class="fa-regular fa-square-check text-base text-emerald-600"></i> أحسنتِ واصلي القراءة</span>
+                        <span class="text-slate-400">مبادرة قارئ اليوم قائد الغد</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="cut-line rounded-2xl p-5 bg-gradient-to-br from-indigo-50/50 to-pink-50/40 border-2 border-dashed border-indigo-300 relative shadow-sm">
+                    <div class="flex items-center justify-between border-b border-indigo-200 pb-2 mb-3">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-lg bg-pink-600 text-white flex items-center justify-center text-sm font-bold">
+                                <i class="fa-solid fa-award"></i>
+                            </span>
+                            <span class="font-extrabold text-lg text-pink-900">قارئة اليوم</span>
+                        </div>
+                        <span class="text-xs font-bold text-amber-600 bg-amber-100 px-2.5 py-1 rounded-full">
+                            ★ تميز قرائي ★
+                        </span>
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-slate-700 shrink-0">اسم الطالبة:</span>
+                            <div class="flex-1 border-b-2 border-dotted border-slate-400 h-6"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-slate-700 shrink-0">قرأت اليوم:</span>
+                            <div class="flex-1 border-b-2 border-dotted border-slate-400 h-6"></div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold text-slate-700 shrink-0">أجمل شيء تعلمته:</span>
+                            <div class="flex-1 border-b-2 border-dotted border-slate-400 h-6"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-indigo-100 flex items-center justify-between text-xs font-bold text-indigo-700">
+                        <span class="flex items-center gap-1.5"><i class="fa-regular fa-square-check text-base text-emerald-600"></i> أحسنتِ واصلي القراءة</span>
+                        <span class="text-slate-400">مبادرة قارئ اليوم قائد الغد</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Page Bottom Note -->
+            <div class="text-center text-xs text-slate-400 pt-2 border-t border-slate-200">
+                تسلم البطاقة للطالبة المتميزة خلال الطابور الصباحي أو الحصة الدراسية
+            </div>
+        </article>
+
+        <!-- ========================================================
+             صفحة 6: ماذا قرأت اليوم؟ ورقة متابعة فردية للطالبة
+        ======================================================== -->
+        <article id="page-6" class="a4-page page-frame bg-white">
+            <!-- Header -->
+            <div class="text-center pb-4 border-b border-slate-200">
+                <span class="inline-block px-3 py-1 text-xs font-bold rounded-full bg-amber-100 text-amber-800 mb-2">
+                    <i class="fa-solid fa-clipboard-check ml-1"></i> ورقة متابعة فردية للطالبة
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-800">ماذا قرأتِ اليوم؟</h2>
+                <p class="text-xs text-slate-500 mt-1">سجّلي رحلتك القرائية وأفكارك الملهمة</p>
+            </div>
+
+            <!-- Form Content -->
+            <div class="flex-1 flex flex-col justify-around py-4 gap-4">
+                
+                <!-- Student & Book Name -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                        <label class="block text-xs font-bold text-indigo-700 mb-1">اسم الطالبة:</label>
+                        <input type="text" placeholder="اكتبي اسمكِ هنا..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    </div>
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                        <label class="block text-xs font-bold text-indigo-700 mb-1">اسم الكتاب / القصة:</label>
+                        <input type="text" placeholder="عنوان القصة أو الكتاب..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                    </div>
+                </div>
+
+                <!-- Favorite Character -->
+                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                    <label class="block text-xs font-bold text-pink-700 mb-1">الشخصية التي أعجبتني ولماذا:</label>
+                    <textarea rows="2" placeholder="ما هي الشخصية المفضلة؟ ولماذا أحببتها؟" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-pink-500 resize-none"></textarea>
+                </div>
+
+                <!-- Key Lesson Learned -->
+                <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                    <label class="block text-xs font-bold text-emerald-700 mb-1">أهم فكرة تعلمتها من القراءة:</label>
+                    <textarea rows="3" placeholder="اكتبي العبرة أو الفكرة الجميلة التي استفدت منها..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-emerald-500 resize-none"></textarea>
+                </div>
+
+                <!-- Self Evaluation -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                    <span class="block text-sm font-bold text-slate-800 mb-2">تقييمي لقراءتي اليوم:</span>
+                    <div class="flex justify-center items-center gap-3 text-2xl" id="readingStars">
+                        <i class="fa-solid fa-star star-item active" onclick="setStarRating(this, 1)"></i>
+                        <i class="fa-solid fa-star star-item active" onclick="setStarRating(this, 2)"></i>
+                        <i class="fa-solid fa-star star-item active" onclick="setStarRating(this, 3)"></i>
+                        <i class="fa-solid fa-star star-item active" onclick="setStarRating(this, 4)"></i>
+                        <i class="fa-solid fa-star star-item active" onclick="setStarRating(this, 5)"></i>
+                    </div>
+                    <span class="block text-xs text-slate-500 mt-2 font-medium">ممتعة جداً ومفيدة</span>
+                </div>
+
+            </div>
+
+            <!-- Page Footer -->
+            <div class="flex justify-between items-center text-xs text-slate-400 pt-3 border-t border-slate-200">
+                <span>مبادرة قارئ اليوم قائد الغد</span>
+                <span>الصف الثاني الابتدائي</span>
+            </div>
+        </article>
+
+        <!-- ========================================================
+             صفحة 7: نجمات القراءة (علقيها في ركن المبادرة)
+        ======================================================== -->
+        <article id="page-7" class="a4-page page-frame bg-white">
+            <!-- Header -->
+            <div class="text-center pb-3 border-b border-slate-200">
+                <span class="inline-block px-3 py-1 text-xs font-bold rounded-full bg-yellow-100 text-yellow-800 mb-1">
+                    <i class="fa-solid fa-thumbtack ml-1"></i> علقيها في ركن المبادرة
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-800">نجمات القراءة</h2>
+                <p class="text-xs text-slate-500">لوحة الإنجاز الفصلي • كل صفحة إنجاز تُضيء بنجمة ★</p>
+            </div>
+
+            <!-- Interactive / Printable Table -->
+            <div class="flex-1 py-3 overflow-hidden">
+                <table class="w-full text-right border-collapse border border-slate-300 text-sm">
+                    <thead>
+                        <tr class="bg-indigo-600 text-white font-bold text-center">
+                            <th class="p-2 border border-slate-300 w-12">#</th>
+                            <th class="p-2 border border-slate-300 w-44 text-right pr-4">اسم الطالبة</th>
+                            <th class="p-2 border border-slate-300">سجل النجوم (كل صفحة إنجاز ★)</th>
+                            <th class="p-2 border border-slate-300 w-24">مجموع النجوم</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 font-semibold text-slate-800">
+                        <!-- 8 Rows as specified in PDF -->
+                        <tr class="hover:bg-indigo-50/50">
+                            <td class="p-2 text-center border border-slate-300 text-slate-500">1</td>
+                            <td class="p-2 border border-slate-300"><input type="text" placeholder="اسم الطالبة..." class="w-full bg-transparent text-sm focus:outline-none"></td>
+                            <td class="p-2 border border-slate-300 text-center text-amber-400 text-base">☆☆☆☆☆☆☆☆☆☆</td>
+                            <td class="p-2 border border-slate-300 text-center text-slate-500">/ 10</td>
+                        </tr>
+                        <tr class="bg-slate-50 hover:bg-indigo-50/50">
+                            <td class="p-2 text-center border border-slate-300 text-slate-500">2</td>
+                            <td class="p-2 border border-slate-300"><input type="text" placeholder="اسم الطالبة..." class="w-full bg-transparent text-sm focus:outline-none"></td>
+                            <td class="p-2 border border-slate-300 text-center text-amber-400 text-base">☆☆☆☆☆☆☆☆☆☆</td>
+                            <td class="p-2 border border-slate-300 text-center text-slate-500">/ 10</td>
+                        </tr>
+                        <tr class="hover:bg-indigo-50/50">
+                            <td class="p-2 text-center border border-slate-300 text-slate-500">3</td>
+                            <td class="p-2 border border-slate-300"><input type="text" placeholder="اسم الطالبة..." class="w-full bg-transparent text-sm focus:outline-none"></td>
+                            <td class="p-2 border border-slate-300 text-center text-amber-400 text-base">☆☆☆☆☆☆☆☆☆☆</td>
+                            <td class="p-2 border border-slate-300 text-center text-slate-500">/ 10</td>
+                        </tr>
+                        <tr class="bg-slate-50 hover:bg-indigo-50/50">
+                            <td class="p-2 text-center border border-slate-300 text-slate-500">4</td>
+                            <td class="p-2 border border-slate-300"><input type="text" placeholder="اسم الطالبة..." class="w-full bg-transparent text-sm focus:outline-none"></td>
+                            <td class="p-2 border border-slate-300 text-center text-amber-400 text-base">☆☆☆☆☆☆☆☆☆☆</td>
+                            <td class="p-2 border border-slate-300 text-center text-slate-500">/ 10</td>
+                        </tr>
+                        <tr class="hover:bg-indigo-50/50">
+                            <td class="p-2 text-center border border-slate-300 text-slate-500">5</td>
+                            <td class="p-2 border border-slate-300"><input type="text" placeholder="اسم الطالبة..." class="w-full bg-transparent text-sm focus:outline-none"></td>
+                            <td class="p-2 border border-slate-300 text-center text-amber-400 text-base">☆☆☆☆☆☆☆☆☆☆</td>
+                            <td class="p-2 border border-slate-300 text-center text-slate-500">/ 10</td>
+                        </tr>
+                        <tr class="bg-slate-50 hover:bg-indigo-50/50">
+                            <td class="p-2 text-center border border-slate-300 text-slate-500">6</td>
+                            <td class="p-2 border border-slate-300"><input type="text" placeholder="اسم الطالبة..." class="w-full bg-transparent text-sm focus:outline-none"></td>
+                            <td class="p-2 border border-slate-300 text-center text-amber-400 text-base">☆☆☆☆☆☆☆☆☆☆</td>
+                            <td class="p-2 border border-slate-300 text-center text-slate-500">/ 10</td>
+                        </tr>
+                        <tr class="hover:bg-indigo-50/50">
+                            <td class="p-2 text-center border border-slate-300 text-slate-500">7</td>
+                            <td class="p-2 border border-slate-300"><input type="text" placeholder="اسم الطالبة..." class="w-full bg-transparent text-sm focus:outline-none"></td>
+                            <td class="p-2 border border-slate-300 text-center text-amber-400 text-base">☆☆☆☆☆☆☆☆☆☆</td>
+                            <td class="p-2 border border-slate-300 text-center text-slate-500">/ 10</td>
+                        </tr>
+                        <tr class="bg-slate-50 hover:bg-indigo-50/50">
+                            <td class="p-2 text-center border border-slate-300 text-slate-500">8</td>
+                            <td class="p-2 border border-slate-300"><input type="text" placeholder="اسم الطالبة..." class="w-full bg-transparent text-sm focus:outline-none"></td>
+                            <td class="p-2 border border-slate-300 text-center text-amber-400 text-base">☆☆☆☆☆☆☆☆☆☆</td>
+                            <td class="p-2 border border-slate-300 text-center text-slate-500">/ 10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Page Bottom Note -->
+            <div class="text-center text-xs font-semibold text-indigo-700 pt-2 border-t border-slate-200">
+                <i class="fa-solid fa-crown text-amber-500 ml-1"></i> تتوج بلقب «قائدة القراءة» الطالبة التي تجمع أكبر عدد من النجوم
+            </div>
+        </article>
+
+        <!-- ========================================================
+             صفحة 8: أنا أحكي قصتي
+        ======================================================== -->
+        <article id="page-8" class="a4-page page-frame bg-white">
+            <!-- Header -->
+            <div class="text-center pb-4 border-b border-slate-200">
+                <span class="inline-block px-4 py-1 text-xs font-bold rounded-full bg-teal-100 text-teal-800 mb-2">
+                    <i class="fa-solid fa-microphone-lines ml-1"></i> مساحة للتعبير والثقة بالنفس
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-800">أنا أحكي قصتي</h2>
+                <p class="text-xs text-slate-500 mt-1">تنمية مهارات التحدث بطلاقة والتعبير القصصي الشيق</p>
+            </div>
+
+            <!-- Form Content -->
+            <div class="flex-1 flex flex-col justify-around py-4 gap-4">
+                
+                <!-- Student & Story Titles -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                        <label class="block text-xs font-bold text-teal-800 mb-1">اسم الطالبة الرائعة:</label>
+                        <input type="text" placeholder="اكتبي اسمكِ هنا..." class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-teal-500">
+                    </div>
+                    <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+                        <label class="block text-xs font-bold text-teal-800 mb-1">عنوان القصة:</label>
+                        <input type="text" placeholder="ما هو عنوان القصة التي ستروينها؟" class="w-full bg-white border border-slate-300 rounded-lg px-3 py-2 text-sm font-semibold focus:outline-none focus:ring-1 focus:ring-teal-500">
+                    </div>
+                </div>
+
+                <!-- Story Narration Textarea with Writing Lines -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex-1 flex flex-col">
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="text-sm font-bold text-slate-800">أحكي قصتي باختصار وبأسلوبي الممتع:</label>
+                        <span class="text-xs text-slate-400"><i class="fa-solid fa-pen-nib ml-1"></i>عبّري بكلماتك الجميلة</span>
+                    </div>
+                    <textarea rows="9" placeholder="كان يا ما كان... في قديم الزمان أو في يوم من الأيام..." class="w-full flex-1 bg-white border border-slate-300 rounded-lg p-3.5 text-sm font-medium leading-loose focus:outline-none focus:ring-1 focus:ring-teal-500 resize-none"></textarea>
+                </div>
+
+                <!-- Teacher Feedback Checkboxes -->
+                <div class="p-3 bg-teal-50/60 rounded-xl border border-teal-200 flex flex-wrap items-center justify-around gap-2 text-xs font-bold text-teal-900">
+                    <span class="flex items-center gap-1.5"><i class="fa-regular fa-circle-check text-teal-600"></i> وضوح الصوت</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-regular fa-circle-check text-teal-600"></i> الثقة بالحديث</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-regular fa-circle-check text-teal-600"></i> تسلسل الأفكار</span>
+                    <span class="flex items-center gap-1.5"><i class="fa-regular fa-circle-check text-teal-600"></i> التعبير المشوق</span>
+                </div>
+
+            </div>
+
+            <!-- Page Bottom Note -->
+            <div class="flex justify-between items-center text-xs text-slate-400 pt-3 border-t border-slate-200">
+                <span>مبادرة قارئ اليوم قائد الغد</span>
+                <span>الابتدائية الخامسة ببحرة المجاهدين</span>
+            </div>
+        </article>
+
+        <!-- ========================================================
+             صفحة 9: صندوق الحكايات (بطاقات تسحب للقراءة والمشاركة)
+        ======================================================== -->
+        <article id="page-9" class="a4-page page-frame bg-white">
+            <!-- Header -->
+            <div class="text-center pb-4 border-b border-slate-200">
+                <span class="inline-block px-4 py-1 text-xs font-bold rounded-full bg-amber-100 text-amber-800 mb-2">
+                    <i class="fa-solid fa-box-open ml-1"></i> بطاقات تسحب للقراءة والمشاركة
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-800">صندوق الحكايات</h2>
+                <p class="text-xs text-slate-500 mt-1">تُقص البطاقات وتوضع في الصندوق لسحبها أثناء الحصة الممتعة</p>
+            </div>
+
+            <!-- 6 Cuttable Story Question Cards -->
+            <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
+                
+                <!-- Card 1 -->
+                <div class="cut-line p-4 rounded-xl bg-indigo-50/50 border border-indigo-200 flex flex-col justify-between">
+                    <div class="flex items-center gap-2 mb-2 text-indigo-700">
+                        <i class="fa-solid fa-masks-theater text-lg"></i>
+                        <span class="text-xs font-bold">بطاقة شخصيات</span>
+                    </div>
+                    <p class="text-base font-extrabold text-slate-800 my-auto text-center leading-relaxed">
+                        اختاري شخصية من القصة وصفيها لزميلاتكِ.
+                    </p>
+                    <div class="text-left text-[10px] text-slate-400">#صندوق_الحكايات</div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="cut-line p-4 rounded-xl bg-pink-50/50 border border-pink-200 flex flex-col justify-between">
+                    <div class="flex items-center gap-2 mb-2 text-pink-700">
+                        <i class="fa-solid fa-book-open text-lg"></i>
+                        <span class="text-xs font-bold">بطاقة فكرة</span>
+                    </div>
+                    <p class="text-base font-extrabold text-slate-800 my-auto text-center leading-relaxed">
+                        اقرئي قصة قصيرة ثم اذكري فكرتها الرئيسية.
+                    </p>
+                    <div class="text-left text-[10px] text-slate-400">#صندوق_الحكايات</div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="cut-line p-4 rounded-xl bg-amber-50/50 border border-amber-200 flex flex-col justify-between">
+                    <div class="flex items-center gap-2 mb-2 text-amber-700">
+                        <i class="fa-solid fa-pen-ruler text-lg"></i>
+                        <span class="text-xs font-bold">بطاقة إبداع</span>
+                    </div>
+                    <p class="text-base font-extrabold text-slate-800 my-auto text-center leading-relaxed">
+                        احكي نهاية مختلفة وجديدة للقصة التي قرأتها.
+                    </p>
+                    <div class="text-left text-[10px] text-slate-400">#صندوق_الحكايات</div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="cut-line p-4 rounded-xl bg-emerald-50/50 border border-emerald-200 flex flex-col justify-between">
+                    <div class="flex items-center gap-2 mb-2 text-emerald-700">
+                        <i class="fa-solid fa-lightbulb text-lg"></i>
+                        <span class="text-xs font-bold">بطاقة فائدة</span>
+                    </div>
+                    <p class="text-base font-extrabold text-slate-800 my-auto text-center leading-relaxed">
+                        ما هو أهم درس تعلمتِه من هذه القصة؟
+                    </p>
+                    <div class="text-left text-[10px] text-slate-400">#صندوق_الحكايات</div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="cut-line p-4 rounded-xl bg-purple-50/50 border border-purple-200 flex flex-col justify-between">
+                    <div class="flex items-center gap-2 mb-2 text-purple-700">
+                        <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                        <span class="text-xs font-bold">بطاقة قيادة وتخيل</span>
+                    </div>
+                    <p class="text-base font-extrabold text-slate-800 my-auto text-center leading-relaxed">
+                        لو كنتِ مكان البطلة، ماذا ستفعلين في هذا الموقف؟
+                    </p>
+                    <div class="text-left text-[10px] text-slate-400">#صندوق_الحكايات</div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="cut-line p-4 rounded-xl bg-blue-50/50 border border-blue-200 flex flex-col justify-between">
+                    <div class="flex items-center gap-2 mb-2 text-blue-700">
+                        <i class="fa-solid fa-spell-check text-lg"></i>
+                        <span class="text-xs font-bold">بطاقة ثروة لغوية</span>
+                    </div>
+                    <p class="text-base font-extrabold text-slate-800 my-auto text-center leading-relaxed">
+                        اذكري كلمة جديدة تعلمتها اليوم ومعناها الجميل.
+                    </p>
+                    <div class="text-left text-[10px] text-slate-400">#صندوق_الحكايات</div>
+                </div>
+
+            </div>
+
+            <!-- Page Bottom Note -->
+            <div class="text-center text-xs text-slate-400 pt-2 border-t border-slate-200">
+                تسحب الطالبة بطاقة عشوائيًا لتجيب عنها أمام زميلاتها في جو من التشجيع
+            </div>
+        </article>
+
+        <!-- ========================================================
+             صفحة 10: شهادة قارئة متميزة
+        ======================================================== -->
+        <article id="page-10" class="a4-page page-frame bg-white relative">
+            
+            <!-- Certificate Luxury Border Frame Inner -->
+            <div class="border-4 border-amber-400/80 p-6 sm:p-8 rounded-2xl h-full flex flex-col justify-between bg-gradient-to-b from-amber-50/30 via-white to-amber-50/20 relative">
+                
+                <!-- Certificate Header -->
+                <div class="text-center">
+                    <div class="flex justify-between items-center text-xs font-bold text-slate-600 mb-2">
+                        <span>المملكة العربية السعودية<br>وزارة التعليم</span>
+                        <div class="w-16 h-16 rounded-full bg-gradient-to-tr from-amber-500 to-amber-300 text-white flex items-center justify-center text-2xl shadow-lg border-2 border-white">
+                            <i class="fa-solid fa-award"></i>
+                        </div>
+                        <span>الابتدائية الخامسة<br>ببحرة المجاهدين</span>
+                    </div>
+
+                    <span class="inline-block px-4 py-1 text-xs font-bold rounded-full bg-amber-100 text-amber-900 mt-2">
+                        تطبع وتُقدّم للطالبة
+                    </span>
+
+                    <h2 class="text-3xl sm:text-4xl font-black text-amber-900 mt-3 tracking-wide">
+                        شَهَادَةُ تَقْدِير
+                    </h2>
+                    <div class="w-24 h-1 bg-amber-500 mx-auto mt-2 rounded-full"></div>
+                </div>
+
+                <!-- Certificate Body -->
+                <div class="my-auto py-6 text-center space-y-4">
+                    <p class="text-lg font-bold text-slate-700">
+                        تَسُرُّ إدارة المدرسة ومعلمة المادة أن تمنح هذه الشهادة للطالبة المتميزة:
+                    </p>
+
+                    <!-- Student Name Fill Line -->
+                    <div class="py-2 border-b-2 border-dashed border-amber-600 max-w-md mx-auto">
+                        <input type="text" placeholder="اكتبي اسم الطالبة هنا..." class="w-full text-center text-2xl sm:text-3xl font-black text-indigo-900 bg-transparent focus:outline-none">
+                    </div>
+
+                    <p class="text-base sm:text-lg font-bold text-slate-800 leading-relaxed max-w-xl mx-auto">
+                        تقديرًا لتميزها ومثابرتها المستمرة وشغفها في القراءة والاطلاع<br>
+                        ضمن فعاليات مبادرة <span class="text-indigo-700 font-extrabold">«قارئ اليوم قائد الغد»</span>
+                    </p>
+
+                    <!-- Motto Ribbon -->
+                    <div class="inline-block bg-amber-100 border border-amber-300 text-amber-900 px-6 py-2 rounded-full text-base font-extrabold shadow-sm">
+                        « أقرأ اليوم لأقود غدًا »
+                    </div>
+                </div>
+
+                <!-- Signatures -->
+                <div class="grid grid-cols-2 gap-8 pt-6 border-t-2 border-slate-200 text-center">
+                    <div>
+                        <p class="text-xs font-bold text-slate-500 mb-1">المعلمة المشرفة</p>
+                        <p class="text-lg font-extrabold text-slate-900">فاطمة الحربي</p>
+                        <div class="mt-4 border-b border-slate-300 w-28 mx-auto"></div>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-slate-500 mb-1">قائدة المدرسة</p>
+                        <p class="text-lg font-extrabold text-slate-900">علوية السيد</p>
+                        <div class="mt-4 border-b border-slate-300 w-28 mx-auto"></div>
+                    </div>
+                </div>
+
+            </div>
+        </article>
+
+    </main>
+
+    <script>
+        // Set Theme Mode (Creative vs Royal)
+        function setTheme(themeName) {
+            const printArea = document.getElementById('printArea');
+            printArea.classList.remove('theme-creative', 'theme-royal');
+            printArea.classList.add(themeName);
+
+            const creativeBtn = document.getElementById('themeCreativeBtn');
+            const royalBtn = document.getElementById('themeRoyalBtn');
+
+            if (themeName === 'theme-creative') {
+                creativeBtn.className = "px-2.5 py-1 rounded-md font-semibold transition bg-indigo-600 text-white shadow-sm";
+                royalBtn.className = "px-2.5 py-1 rounded-md font-semibold transition text-slate-700 hover:bg-white";
+            } else {
+                royalBtn.className = "px-2.5 py-1 rounded-md font-semibold transition bg-amber-700 text-white shadow-sm";
+                creativeBtn.className = "px-2.5 py-1 rounded-md font-semibold transition text-slate-700 hover:bg-white";
+            }
+        }
+
+        // Change Font Family on preview/print area only
+        function changeFont(fontClass) {
+            const printArea = document.getElementById('printArea');
+            printArea.classList.remove('font-tajawal', 'font-cairo', 'font-almarai', 'font-amiri', 'font-alexandria', 'font-gess');
+            printArea.classList.add(fontClass);
+        }
+
+        // Set Font Size on preview/print area only (Small, Medium, Large)
+        function setFontSize(sizeClass) {
+            const printArea = document.getElementById('printArea');
+            printArea.classList.remove('size-small', 'size-medium', 'size-large');
+            printArea.classList.add(sizeClass);
+
+            const sBtn = document.getElementById('btnSizeSmall');
+            const mBtn = document.getElementById('btnSizeMed');
+            const lBtn = document.getElementById('btnSizeLarge');
+
+            [sBtn, mBtn, lBtn].forEach(b => {
+                b.className = "px-2 py-1 rounded hover:bg-white text-slate-700 transition";
+            });
+
+            if (sizeClass === 'size-small') sBtn.className = "px-2 py-1 rounded bg-indigo-600 text-white font-bold transition";
+            if (sizeClass === 'size-medium') mBtn.className = "px-2 py-1 rounded bg-indigo-600 text-white font-bold transition";
+            if (sizeClass === 'size-large') lBtn.className = "px-2 py-1 rounded bg-indigo-600 text-white font-bold transition";
+        }
+
+        // Apply Margin Presets or Show Custom Inputs
+        function applyMarginPreset(preset) {
+            const customBox = document.getElementById('customMarginInputs');
+            const root = document.documentElement;
+
+            if (preset === 'default') {
+                customBox.classList.add('hidden');
+                customBox.classList.remove('flex');
+                root.style.setProperty('--page-margin-y', '5mm');
+                root.style.setProperty('--page-margin-x', '10mm');
+            } else if (preset === 'compact') {
+                customBox.classList.add('hidden');
+                customBox.classList.remove('flex');
+                root.style.setProperty('--page-margin-y', '3mm');
+                root.style.setProperty('--page-margin-x', '5mm');
+            } else if (preset === 'balanced') {
+                customBox.classList.add('hidden');
+                customBox.classList.remove('flex');
+                root.style.setProperty('--page-margin-y', '8mm');
+                root.style.setProperty('--page-margin-x', '12mm');
+            } else if (preset === 'wide') {
+                customBox.classList.add('hidden');
+                customBox.classList.remove('flex');
+                root.style.setProperty('--page-margin-y', '12mm');
+                root.style.setProperty('--page-margin-x', '15mm');
+            } else if (preset === 'custom') {
+                customBox.classList.remove('hidden');
+                customBox.classList.add('flex');
+                applyCustomMargins();
+            }
+        }
+
+        // Apply Custom Margins directly
+        function applyCustomMargins() {
+            const y = document.getElementById('customMarginY').value || 5;
+            const x = document.getElementById('customMarginX').value || 10;
+            document.documentElement.style.setProperty('--page-margin-y', `${y}mm`);
+            document.documentElement.style.setProperty('--page-margin-x', `${x}mm`);
+        }
+
+        // Smooth scroll to page
+        function scrollToPage(pageId) {
+            const el = document.getElementById(pageId);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Interactive Star Rating for the Log page
+        function setStarRating(starElement, rating) {
+            const parent = starElement.parentElement;
+            const stars = parent.querySelectorAll('.star-item');
+            stars.forEach((star, index) => {
+                if (index < rating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // Toggle Free Live Content Editing Mode
+        let isEditModeActive = false;
+
+        function toggleEditMode() {
+            isEditModeActive = !isEditModeActive;
+            const printArea = document.getElementById('printArea');
+            const editBtn = document.getElementById('editModeBtn');
+            const editText = document.getElementById('editModeText');
+            const editIcon = document.getElementById('editModeIcon');
+            const editBanner = document.getElementById('editNoticeBanner');
+
+            if (isEditModeActive) {
+                // Enable editing across all text elements in the document
+                printArea.setAttribute('contenteditable', 'true');
+                printArea.setAttribute('spellcheck', 'false');
+                printArea.classList.add('edit-mode-active');
+
+                // Update Button appearance
+                editBtn.className = "inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95 text-xs sm:text-sm ring-2 ring-emerald-300";
+                editText.textContent = "حفظ وتثبيت التعديل";
+                editIcon.className = "fa-solid fa-check text-base";
+
+                // Show instruction banner
+                editBanner.classList.remove('hidden');
+            } else {
+                // Disable editing mode
+                printArea.removeAttribute('contenteditable');
+                printArea.classList.remove('edit-mode-active');
+
+                // Restore Button appearance
+                editBtn.className = "inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-bold px-3.5 py-2 rounded-xl shadow-md transition transform active:scale-95 text-xs sm:text-sm";
+                editText.textContent = "تفعيل التعديل المباشر";
+                editIcon.className = "fa-solid fa-pen-to-square text-base";
+
+                // Hide instruction banner
+                editBanner.classList.add('hidden');
+            }
+        }
+
+        // Store original unmodified HTML snapshot of pages
+        let originalPrintAreaHTML = "";
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const printArea = document.getElementById('printArea');
+            if (printArea) {
+                originalPrintAreaHTML = printArea.innerHTML;
+            }
+        });
+
+        // Open Confirmation Modal
+        function openResetModal() {
+            const modal = document.getElementById('resetModal');
+            modal.classList.remove('hidden');
+        }
+
+        // Close Confirmation Modal
+        function closeResetModal() {
+            const modal = document.getElementById('resetModal');
+            modal.classList.add('hidden');
+        }
+
+        // Restore original contents and reset edit status
+        function restoreOriginalContent() {
+            const printArea = document.getElementById('printArea');
+            if (printArea && originalPrintAreaHTML) {
+                // Turn off edit mode if it was active
+                if (isEditModeActive) {
+                    toggleEditMode();
+                }
+
+                // Restore the original inner markup
+                printArea.innerHTML = originalPrintAreaHTML;
+
+                // Close modal
+                closeResetModal();
+
+                // Display brief confirmation toast
+                showToast("تمت استعادة كافة النصوص والصفحات الأصلية بنجاح!");
+            }
+        }
+
+        // Helper function for user feedback toasts
+        function showToast(message) {
+            const toast = document.getElementById('toastNotification');
+            const msgSpan = document.getElementById('toastMessage');
+            msgSpan.textContent = message;
+            toast.classList.remove('hidden');
+            toast.classList.add('flex');
+
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
