@@ -234,7 +234,7 @@
         }
 
         
-        media print {
+        @media print {
             html, body {
                 background: #ffffff !important;
                 margin: 0 !important;
@@ -324,7 +324,7 @@
                 </div>
             </div>
 
-            <button type="button" onclick="this.closest('header').classList.toggle('toolbar-open')" class="mobile-toolbar-toggle" aria-label="إظهار أدوات العرض والطباعة"><i class="fa-solid fa-sliders"></i></button><!-- Central Customization Controls -->
+            <button type="button" onclick="document.querySelector('header>div>div:nth-of-type(2)').classList.toggle('hidden');document.querySelector('header>div>div:nth-of-type(3)').classList.toggle('hidden')" class="mobile-toolbar-toggle sm:hidden" aria-label="إظهار أدوات العرض والطباعة"><i class="fa-solid fa-sliders"></i></button>
             <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
                 
                 <!-- Theme Selector -->
@@ -1378,7 +1378,7 @@
         // Store original unmodified HTML snapshot of pages
         let originalPrintAreaHTML = "";
 
-        window.addEventListener('DOMContentLoaded', () => {
+        window.addEventListener('DOMContentLoaded', () => { if (window.innerWidth < 641) { document.querySelector('header>div>div:nth-of-type(2)').classList.add('hidden'); document.querySelector('header>div>div:nth-of-type(3)').classList.add('hidden'); }
             const printArea = document.getElementById('printArea');
             if (printArea) {
                 originalPrintAreaHTML = printArea.innerHTML;
