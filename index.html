@@ -233,8 +233,8 @@
             border-radius: 4px;
         }
 
-        /* Print Specific Rules */
-        @media print {
+        
+        media print {
             html, body {
                 background: #ffffff !important;
                 margin: 0 !important;
@@ -324,7 +324,7 @@
                 </div>
             </div>
 
-            <!-- Central Customization Controls -->
+            <button type="button" onclick="this.closest('header').classList.toggle('toolbar-open')" class="mobile-toolbar-toggle" aria-label="إظهار أدوات العرض والطباعة"><i class="fa-solid fa-sliders"></i></button><!-- Central Customization Controls -->
             <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm">
                 
                 <!-- Theme Selector -->
