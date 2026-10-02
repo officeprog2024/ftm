@@ -43,7 +43,7 @@ async function makePdf(entries,label,filename){
   await document.fonts.ready;hidePdf();const pdf=new jspdf.jsPDF({unit:'mm',format:'a4',compress:true});
   host=document.createElement('div');host.style.cssText='position:absolute;left:-10000px;top:0;width:794px';document.body.append(host);
   const pages=[];let page,body;
-  function newPage(){page=document.createElement('section');page.className='pdf-page';page.innerHTML=`<h1>${esc(label)}</h1><p>${C.bankId==='hemma'?'همه':'ملزمة بالبيد'} · ${esc(sectionTitle)} · ${entries.length} سؤالًا</p><div class="pdf-body"></div><div class="pdf-footer"></div>`;host.append(page);body=page.querySelector('.pdf-body');pages.push(page);}
+  function newPage(){page=document.createElement('section');page.className='pdf-page';page.innerHTML=`<h1>${esc(label)}</h1><p>${typeof quizConfig==='undefined'?'ملزمة بالبيد':quizConfig.name} · ${esc(sectionTitle)} · ${entries.length} سؤالًا</p><div class="pdf-body"></div><div class="pdf-footer"></div>`;host.append(page);body=page.querySelector('.pdf-body');pages.push(page);}
   newPage();for(const [i,e]of entries.entries()){
    const card=document.createElement('article');card.className='pdf-question';card.innerHTML=`<p><strong>${i+1}. ${esc(e.q.q)}</strong></p><p>${esc(sectionNames[e.q.sec])}</p>${e.q.opts.map((o,j)=>`<p>${j+1}. ${esc(o)}</p>`).join('')}<p class="wrong">إجابتك: ${esc(e.q.opts[e.answer])}</p><p class="correct">الإجابة الصحيحة: ${esc(e.q.opts[e.q.ans])}</p>`;body.append(card);
    if(body.getBoundingClientRect().bottom-page.getBoundingClientRect().top>1000&&body.children.length>1){card.remove();newPage();body.append(card);}
