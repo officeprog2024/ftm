@@ -64,6 +64,14 @@
     .topnav a:focus-visible { outline:3px solid #f59e0b; outline-offset:3px; }
     @media print { .topbar { display:none!important; } }
 
+    .hero-banner { position:relative; }
+    .hero-banner h1 { padding-inline:2rem; }
+    .dedication-toggle { position:absolute; top:.75rem; left:.75rem; width:36px; height:36px; display:grid; place-items:center; padding:0; border:1px solid #ffffff50; border-radius:.65rem; background:#ffffff15; color:#fff; font-size:1.5rem; line-height:1; cursor:pointer; }
+    .dedication-toggle:hover { background:#ffffff30; }
+    .dedication-toggle:focus-visible { outline:3px solid #f59e0b; outline-offset:3px; }
+    .dedication[hidden] { display:none!important; }
+    .reading-title { background:linear-gradient(120deg,#fffbeb,#fef3c7); color:#92400e; border-inline-start:5px solid #d97706; }
+    .reading-panel .card-icon { background:#fffbeb; color:#92400e; }
   </style>
 </head>
 <body>
@@ -76,7 +84,7 @@
   <main class="page-container">
     <section class="hero-banner mb-4 text-center" aria-labelledby="page-title">
       <h1 id="page-title" class="mb-2">اهلا بالحب <span style="color:#dc2626" aria-label="قلب أحمر">♥</span></h1>
-      <div class="dedication"><p><strong>الى الحب ونبض القلب..</strong> أهديكِ هذا الموقع؛ ليكون خطوةً صغيرة في طريق نجاحك، وعونًا لكِ في أداء اختبارك وتحقيق أعلى الدرجات التي تستحقينها، فأنا لا أتمنى لكِ النجاح فقط، بل أتمنى أن أراكِ دائمًا في القمة، متألقةً كما عرفكِ قلبي، وفخورةً بنفسكِ.. كل ما يُعينكِ على الوصول يسعدني، وكل إنجازٍ لكِ أشعر أنه جزءٌ من فرحتي. أحبكِ، وأتمنى لكِ مستقبلًا يليق بقلبكِ الجميل وطموحكِ الكبير.</p></div>
+      <button id="dedication-toggle" class="dedication-toggle" type="button" aria-controls="dedication-text" aria-expanded="true" aria-label="إخفاء الإهداء" title="إخفاء الإهداء">−</button><div class="dedication" id="dedication-text"><p><strong>الى الحب ونبض القلب..</strong> أهديكِ هذا الموقع؛ ليكون خطوةً صغيرة في طريق نجاحك، وعونًا لكِ في أداء اختبارك وتحقيق أعلى الدرجات التي تستحقينها، فأنا لا أتمنى لكِ النجاح فقط، بل أتمنى أن أراكِ دائمًا في القمة، متألقةً كما عرفكِ قلبي، وفخورةً بنفسكِ.. كل ما يُعينكِ على الوصول يسعدني، وكل إنجازٍ لكِ أشعر أنه جزءٌ من فرحتي. أحبكِ، وأتمنى لكِ مستقبلًا يليق بقلبكِ الجميل وطموحكِ الكبير.</p></div>
     </section>
     <a class="custom-card standards-link" href="standards.html"><span class="card-icon"><i class="bi bi-bookmark-check" aria-hidden="true"></i></span><span><span class="link-title">المعايير المهنية للغة العربية</span><small>تعرّفي على المعايير قبل بدء الاختبارات.</small></span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a>
     <section class="section-panel trial-panel" aria-labelledby="links-title">
@@ -97,7 +105,10 @@
       <p>اختبارات متتابعة تحفظ تقدمك، مع إمكانية استبعاد الأسئلة التي أتقنتها ومراجعة الأخطاء حتى إتقان جميع الأسئلة.</p>
       <div class="links-grid"><a class="custom-card" href="round.html"><span class="card-icon"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></span><span class="link-title">جولة اختبار ملزمة بالبيد</span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a><a class="custom-card" href="hemma-round.html"><span class="card-icon"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></span><span class="link-title">جولة اختبار همه</span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a><a class="custom-card" href="naba-round.html"><span class="card-icon"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></span><span class="link-title">جولة اختبار نبا</span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a><a class="custom-card" href="bader-round.html"><span class="card-icon"><i class="bi bi-arrow-repeat" aria-hidden="true"></i></span><span class="link-title">جولة اختبار بدر</span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a></div>
     </section>
+    <section class="section-panel reading-panel" aria-labelledby="reading-section-title"><h2 id="reading-section-title" class="section-title reading-title"><i class="bi bi-book" aria-hidden="true"></i>الملازم والأسئلة للقراءة</h2><p>اقرئي جميع الأسئلة بالترتيب، مع خياراتها والإجابات الصحيحة والتوضيحات المرفقة.</p><div class="links-grid"><a class="custom-card" href="balbaid-reading.html"><span class="card-icon"><i class="bi bi-book" aria-hidden="true"></i></span><span class="link-title">ملزمة بالبيد</span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a><a class="custom-card" href="hemma-reading.html"><span class="card-icon"><i class="bi bi-book" aria-hidden="true"></i></span><span class="link-title">ملزمة همة</span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a><a class="custom-card" href="naba-reading.html"><span class="card-icon"><i class="bi bi-book" aria-hidden="true"></i></span><span class="link-title">أسئلة نبا</span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a><a class="custom-card" href="bader-reading.html"><span class="card-icon"><i class="bi bi-book" aria-hidden="true"></i></span><span class="link-title">أسئلة بدر</span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a></div></section>
   </main>
+<script src="dedication.js"></script>
 </body>
 </html>
+
 
