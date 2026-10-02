@@ -1,12 +1,13 @@
 /* Shared round state operations; question IDs remain stable across both modes. */
 (function(scope){
 'use strict';
+const bankId=typeof quizConfig==='undefined'?'balbaid':quizConfig.id;
 const bank=new Map(questionsDatabase.map(q=>[q.id,q]));
 const pool=r=>questionsDatabase.filter(q=>r.section==='all'||q.sec===r.section);
 const available=r=>pool(r).filter(q=>!r.exclude||!r.correct.includes(q.id));
 function create(section,count,exclude){
  if(section!=='all'&&!Object.hasOwn(sectionNames,section))throw Error('القسم غير صالح');
- if(!Number.isInteger(count)||count<1||count>242)throw Error('اختر عددًا صحيحًا من 1 إلى 242');
+ if(!Number.isInteger(count)||count<1||count>questionsDatabase.length)throw Error(`اختر عددًا صحيحًا من 1 إلى ${questionsDatabase.length}`);
  return {id:crypto.randomUUID(),createdAt:new Date().toISOString(),section,count,exclude:!!exclude,status:'active',correct:[],tests:[],active:null};
 }
 function start(r,random=Math.random){
@@ -27,6 +28,7 @@ function mistakes(r){const all=new Map();for(const t of r.tests)for(const e of w
 function score(t){const right=t.ids.filter(id=>t.answers[id]===bank.get(id).ans).length;const skipped=t.ids.filter(id=>t.answers[id]===undefined).length;return {right,skipped,wrong:t.ids.length-right-skipped};}
 function validate(raw){
  if(!raw||raw.version!==1||!raw.round)throw Error('ملف الجولة غير صالح أو بإصدار غير مدعوم');
+ if((raw.bankId||'balbaid')!==bankId)throw Error('ملف الجولة يخص نموذج أسئلة مختلف');
  const r=raw.round;create(r.section,r.count,r.exclude);
  if(typeof r.exclude!=='boolean'||!['active','ended'].includes(r.status)||typeof r.id!=='string'||r.id.length>100||typeof r.createdAt!=='string'||!Array.isArray(r.tests)||r.tests.length>10000)throw Error('بيانات الجولة غير صالحة');
  const allowed=new Set(pool(r).map(q=>q.id));
@@ -38,5 +40,5 @@ function validate(raw){
  if(r.status==='ended'&&active)throw Error('جولة منتهية تحتوي على اختبار جاري');
  return {id:r.id,createdAt:r.createdAt,section:r.section,count:r.count,exclude:r.exclude,status:r.status,tests,correct:[...correct],active};
 }
-scope.RoundCore={bank,pool,available,create,start,finish,wrong,mistakes,score,validate};
+scope.RoundCore={bankId,bank,pool,available,create,start,finish,wrong,mistakes,score,validate};
 })(globalThis);
