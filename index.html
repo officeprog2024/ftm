@@ -55,6 +55,15 @@
     .standards-link .card-icon { background:#fef3c7; color:#92400e; }
     .standards-link .link-title { color:#78350f; }
     .standards-link small { display:block; color:#92400e; margin-top:.25rem; }
+  
+    .topbar { position:sticky; top:0; z-index:1100; background:linear-gradient(110deg,#111827,#1e3a8a); color:#fff; padding:1rem; box-shadow:0 4px 18px #0f172a20; }
+    .page-container { width:calc(100% - 2rem); max-width:960px; margin-inline:auto; }
+    .topnav { display:flex; flex-wrap:wrap; align-items:center; gap:.6rem; }
+    .topnav a { color:#fff; text-decoration:none; padding:.55rem .9rem; border-radius:.75rem; border:1px solid transparent; transition:background .2s,border-color .2s; }
+    .topnav a:hover,.topnav a[aria-current] { background:#ffffff20; border-color:#ffffff30; }
+    .topnav a:focus-visible { outline:3px solid #f59e0b; outline-offset:3px; }
+    @media print { .topbar { display:none!important; } }
+
   </style>
 </head>
 <body>
