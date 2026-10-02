@@ -1,0 +1,1143 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>المعايير المهنية لاختبار الرخصة المهنية - لغة عربية 2</title>
+
+  <!-- Google Font: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 RTL -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    :root {
+      --primary: #198754;
+      --primary-dark: #0f5132;
+      --primary-light: #e8f5e9;
+      --navy: #0f2942;
+      --navy-light: #1e3a5f;
+      --bg-body: #f8fafc;
+      --surface: #ffffff;
+      --border-color: #e2e8f0;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
+      --shadow-subtle: 0 2px 8px rgba(15, 41, 66, 0.05);
+      --shadow-elevated: 0 8px 24px rgba(15, 41, 66, 0.09);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Cairo', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.8;
+      font-size: 0.95rem;
+      padding-bottom: 50px;
+    }
+
+    /* Mobile-first Optimized Container */
+    .app-container {
+      width: 100%;
+      max-width: 760px;
+      margin-inline: auto;
+      padding: 12px 10px;
+    }
+
+    @media (min-width: 576px) {
+      .app-container {
+        padding: 20px 16px;
+      }
+    }
+
+    /* Hero Banner Mobile-Ready */
+    .hero-card {
+      background: linear-gradient(145deg, #ffffff 0%, #f0fdf4 100%);
+      border: 1px solid #d1fae5;
+      border-radius: var(--radius-lg);
+      padding: 18px 14px;
+      position: relative;
+      box-shadow: var(--shadow-subtle);
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #198754, #0d9488, #3b82f6);
+    }
+
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #dcfce7;
+      color: var(--primary-dark);
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+      border: 1px solid rgba(25, 135, 84, 0.2);
+    }
+
+    .hero-title {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+
+    .hero-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    /* Stats Bar (Mobile Grid 2x2) */
+    .stat-pill-box {
+      background: var(--surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 10px 8px;
+      text-align: center;
+      box-shadow: var(--shadow-subtle);
+      transition: transform 0.12s ease;
+    }
+
+    .stat-pill-box:active {
+      transform: scale(0.97);
+    }
+
+    .stat-num {
+      font-size: 1.35rem;
+      font-weight: 900;
+      color: var(--primary);
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    /* Sticky Mobile Toolbar */
+    .sticky-toolbar {
+      position: sticky;
+      top: 8px;
+      z-index: 1030;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 8px 10px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(15, 41, 66, 0.07);
+    }
+
+    .search-input-group {
+      position: relative;
+    }
+
+    .search-input-group i {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .search-input-group input {
+      padding-right: 36px;
+      padding-left: 10px;
+      font-size: 0.88rem;
+      border-radius: 10px;
+      border: 1px solid #cbd5e1;
+      height: 40px;
+    }
+
+    .search-input-group input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.15);
+    }
+
+    .quick-action-btn {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 6px 10px;
+      border-radius: 8px;
+      min-height: 38px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    /* Distinct Domain Card Structure with Shaded Headers */
+    .domain-accordion-card {
+      background: var(--surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      margin-bottom: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.2s ease;
+    }
+
+    .domain-accordion-card.is-open {
+      border-color: #86efac;
+      box-shadow: var(--shadow-elevated);
+    }
+
+    /* Common Card Header Button */
+    .domain-trigger {
+      width: 100%;
+      padding: 12px 14px;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      text-align: right;
+      cursor: pointer;
+      font-family: inherit;
+      outline: none;
+      transition: background-color 0.2s ease, filter 0.2s ease;
+    }
+
+    .domain-trigger:active {
+      filter: brightness(0.96);
+    }
+
+    /* Distinct Shading Gradients for Domain Headers */
+    .domain-accordion-card[data-domain="النحو"] .domain-trigger {
+      background: linear-gradient(135deg, #e8f8f0 0%, #d1f2e1 100%);
+      border-bottom: 1px solid #b7ebd0;
+    }
+    .domain-accordion-card[data-domain="الصرف"] .domain-trigger {
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      border-bottom: 1px solid #93c5fd;
+    }
+    .domain-accordion-card[data-domain="الأدب والنقد"] .domain-trigger {
+      background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+      border-bottom: 1px solid #d8b4fe;
+    }
+    .domain-accordion-card[data-domain="البلاغة"] .domain-trigger {
+      background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+      border-bottom: 1px solid #fcd34d;
+    }
+    .domain-accordion-card[data-domain="العروض والقافية"] .domain-trigger {
+      background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%);
+      border-bottom: 1px solid #fda4af;
+    }
+    .domain-accordion-card[data-domain="علم اللغة"] .domain-trigger {
+      background: linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%);
+      border-bottom: 1px solid #5eead4;
+    }
+    .domain-accordion-card[data-domain="المهارات اللغوية"] .domain-trigger {
+      background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+      border-bottom: 1px solid #a5b4fc;
+    }
+    .domain-accordion-card[data-domain="طرق تدريس اللغة العربية"] .domain-trigger {
+      background: linear-gradient(135deg, #fae8ff 0%, #f5d0fe 100%);
+      border-bottom: 1px solid #f0abfc;
+    }
+
+    .domain-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .domain-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.05rem;
+      flex-shrink: 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .domain-name {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin: 0;
+      line-height: 1.3;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .domain-meta {
+      font-size: 0.74rem;
+      color: #475569;
+      font-weight: 600;
+      margin-top: 1px;
+    }
+
+    .badge-weight {
+      font-size: 0.8rem;
+      font-weight: 800;
+      background-color: rgba(255, 255, 255, 0.92);
+      color: var(--navy);
+      padding: 3px 8px;
+      border-radius: 999px;
+      flex-shrink: 0;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      min-width: 48px;
+      text-align: center;
+    }
+
+    .chevron-icon {
+      font-size: 0.9rem;
+      color: #475569;
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .domain-trigger[aria-expanded="true"] .chevron-icon {
+      transform: rotate(180deg);
+      color: var(--navy);
+    }
+
+    /* Card Body Content */
+    .domain-content {
+      padding: 6px 12px 10px;
+      background-color: #ffffff;
+    }
+
+    .criterion-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 10px 4px;
+      border-bottom: 1px dashed #e2e8f0;
+    }
+
+    .criterion-item:last-child {
+      border-bottom: none;
+    }
+
+    .criterion-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .code-chip {
+      font-family: monospace, 'Cairo';
+      font-weight: 800;
+      font-size: 0.78rem;
+      background: #f1f5f9;
+      color: var(--navy);
+      padding: 2px 7px;
+      border-radius: 6px;
+      direction: ltr;
+      display: inline-block;
+      border: 1px solid #cbd5e1;
+    }
+
+    .criterion-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #64748b;
+      background: #f8fafc;
+      padding: 2px 6px;
+      border-radius: 5px;
+    }
+
+    .criterion-p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #334155;
+      text-align: justify;
+      line-height: 1.7;
+    }
+
+    /* Priority Focus Card */
+    .focus-card-modern {
+      background: linear-gradient(135deg, #0f2942 0%, #1e3a5f 100%);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 16px 14px;
+      margin-top: 16px;
+      box-shadow: 0 8px 20px rgba(15, 41, 66, 0.15);
+    }
+
+    .focus-card-modern h3 {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: #6ee7b7;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .focus-card-modern p {
+      font-size: 0.86rem;
+      line-height: 1.6;
+      margin-bottom: 4px;
+      color: #f8fafc;
+    }
+
+    .focus-card-modern strong {
+      color: #a7f3d0;
+    }
+
+    /* Official Authorized Sources Section */
+    .sources-box {
+      margin-top: 18px;
+    }
+
+    .sources-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--navy);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .official-source-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 10px 12px;
+      color: var(--navy);
+      text-decoration: none;
+      margin-bottom: 8px;
+      box-shadow: var(--shadow-subtle);
+      transition: all 0.18s ease;
+    }
+
+    .official-source-card:active {
+      transform: scale(0.98);
+      background-color: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .source-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .source-icon-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      flex-shrink: 0;
+    }
+
+    .icon-etec {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .icon-qiyas {
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    .icon-sadeed {
+      background: #fae8ff;
+      color: #86198f;
+    }
+
+    .source-text-title {
+      font-size: 0.86rem;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.3;
+      margin-bottom: 2px;
+    }
+
+    .source-text-sub {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      direction: ltr;
+      text-align: right;
+    }
+
+    .official-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    /* Print styles */
+    @media print {
+      body { background: #fff; }
+      .sticky-toolbar, .no-print { display: none !important; }
+      .collapse { display: block !important; height: auto !important; }
+      .app-container { max-width: 100%; padding: 0; }
+      .domain-accordion-card { break-inside: avoid; border: 1px solid #bbb; margin-bottom: 12px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="app-container">
+
+    <!-- Hero Card -->
+    <header class="hero-card">
+      <span class="tag-badge">
+        <i class="bi bi-shield-check"></i>
+        الرخصة المهنية للوظائف التعليمية
+      </span>
+      <h1 class="hero-title">
+        المعايير التخصصية لاختبار الرخصة
+        <br>
+        <span class="text-success">تخصص لغة عربية 2</span>
+      </h1>
+      <p class="hero-desc">
+        عرض مخصص ومحسن بالكامل للهواتف الذكية مع رؤوس بطاقات ملوّنة ومظللة ومصادر معتمدة رسمياً.
+      </p>
+    </header>
+
+    <!-- 2x2 Mobile Quick Stats Grid -->
+    <div class="row g-2 mb-3">
+      <div class="col-6">
+        <div class="stat-pill-box">
+          <div class="stat-num">8</div>
+          <div class="stat-label">مجالات رئيسة</div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="stat-pill-box">
+          <div class="stat-num">25</div>
+          <div class="stat-label">معياراً تخصصياً</div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="stat-pill-box">
+          <div class="stat-num text-success">28%</div>
+          <div class="stat-label">الأعلى وزناً: النحو</div>
+        </div>
+      </div>
+      <div class="col-6">
+        <div class="stat-pill-box">
+          <div class="stat-num text-dark">100%</div>
+          <div class="stat-label">مجموع الأوزان</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sticky Quick Search & Collapse Controls -->
+    <div class="sticky-toolbar">
+      <div class="row g-2 align-items-center">
+        <div class="col-12">
+          <div class="search-input-group">
+            <i class="bi bi-search"></i>
+            <input 
+              type="text" 
+              id="criterionSearch" 
+              class="form-control" 
+              placeholder="ابحث برقم المعيار أو كلمة (مثال: إعراب، بلاغة...)" 
+              aria-label="البحث في المعايير">
+          </div>
+        </div>
+        <div class="col-12 d-flex gap-2">
+          <button type="button" id="btnExpandAll" class="btn btn-outline-success quick-action-btn flex-fill">
+            <i class="bi bi-arrows-expand"></i> فتح الكل
+          </button>
+          <button type="button" id="btnCollapseAll" class="btn btn-outline-secondary quick-action-btn flex-fill">
+            <i class="bi bi-arrows-collapse"></i> طي الكل
+          </button>
+        </div>
+      </div>
+      <div id="searchCounter" class="d-none text-muted small mt-2 fw-bold text-center"></div>
+    </div>
+
+    <!-- Collapsible Domains Accordion List -->
+    <section id="domainsAccordion">
+
+      <!-- Domain 1: النحو -->
+      <div class="domain-accordion-card domain-item" data-domain="النحو">
+        <button class="domain-trigger" type="button" data-bs-toggle="collapse" data-bs-target="#domain-1" aria-expanded="true" aria-controls="domain-1">
+          <div class="domain-title-group">
+            <div class="domain-icon"><i class="bi bi-diagram-3-fill text-success"></i></div>
+            <div>
+              <h2 class="domain-name">النحو</h2>
+              <div class="domain-meta">8 معايير (6-2-1 إلى 6-2-8)</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <span class="badge-weight">28%</span>
+            <i class="bi bi-chevron-down chevron-icon"></i>
+          </div>
+        </button>
+
+        <div id="domain-1" class="collapse show">
+          <div class="domain-content">
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-1</span>
+                <span class="criterion-badge">أقسام الكلمة وأحوالها</span>
+              </div>
+              <p class="criterion-p">تصنيف الكلمة إلى أقسامها، ومعرفة أحوالها من حيث الإعراب والبناء، وأحوال الاسم من حيث التعريف والتنكير.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-2</span>
+                <span class="criterion-badge">المرفوعات</span>
+              </div>
+              <p class="criterion-p">معرفة الأسماء المرفوعة، وعوامل الرفع فيها، وأحكامها الإعرابية.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-3</span>
+                <span class="criterion-badge">المنصوبات</span>
+              </div>
+              <p class="criterion-p">التفريق بين الأسماء المنصوبة، ومعرفة أحكامها.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-4</span>
+                <span class="criterion-badge">المجرورات</span>
+              </div>
+              <p class="criterion-p">معرفة الأسماء المجرورة وأحكامها.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-5</span>
+                <span class="criterion-badge">الفعل المضارع</span>
+              </div>
+              <p class="criterion-p">اكتشاف علاقة الفعل المضارع بموقعه والعوامل الداخلة عليه.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-6</span>
+                <span class="criterion-badge">التوابع</span>
+              </div>
+              <p class="criterion-p">استعمال التوابع الاستعمال الدقيق ومعرفة أحكامها.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-7</span>
+                <span class="criterion-badge">الأساليب النحوية</span>
+              </div>
+              <p class="criterion-p">صياغة أهم الأساليب النحوية الشائعة: التعجب، والتفضيل، والعدد، والنداء، والتحذير والإغراء، والاختصاص، والاستثناء، والمدح والذم، ومعرفة أحكامها الإعرابية.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-8</span>
+                <span class="criterion-badge">الجمل وأشباه الجمل</span>
+              </div>
+              <p class="criterion-p">التفريق بين الجمل وأشباه الجمل وما يتعلق بها من أحكام.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 2: الصرف -->
+      <div class="domain-accordion-card domain-item" data-domain="الصرف">
+        <button class="domain-trigger" type="button" data-bs-toggle="collapse" data-bs-target="#domain-2" aria-expanded="false" aria-controls="domain-2">
+          <div class="domain-title-group">
+            <div class="domain-icon"><i class="bi bi-puzzle-fill text-primary"></i></div>
+            <div>
+              <h2 class="domain-name">الصرف</h2>
+              <div class="domain-meta">معيار واحد (6-2-9)</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <span class="badge-weight">6%</span>
+            <i class="bi bi-chevron-down chevron-icon"></i>
+          </div>
+        </button>
+
+        <div id="domain-2" class="collapse">
+          <div class="domain-content">
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-9</span>
+                <span class="criterion-badge">بنية الكلمة وقواعدها</span>
+              </div>
+              <p class="criterion-p">فهم المصطلحات والقواعد الصرفية في وصف بنية الكلمة وتحليلها وفق قواعد بناء الكلمة في الصرف العربي، ويشمل الميزان الصرفي، المجرد والمزيد، التثنية والجمع والنسب والتصغير، الصحيح والمعتل، المصادر، المشتقات، الإعلال والإبدال، وجموع التكسير.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 3: الأدب والنقد -->
+      <div class="domain-accordion-card domain-item" data-domain="الأدب والنقد">
+        <button class="domain-trigger" type="button" data-bs-toggle="collapse" data-bs-target="#domain-3" aria-expanded="false" aria-controls="domain-3">
+          <div class="domain-title-group">
+            <div class="domain-icon"><i class="bi bi-book-half text-purple" style="color: #7e22ce;"></i></div>
+            <div>
+              <h2 class="domain-name">الأدب والنقد</h2>
+              <div class="domain-meta">معيار واحد (6-2-10)</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <span class="badge-weight">17%</span>
+            <i class="bi bi-chevron-down chevron-icon"></i>
+          </div>
+        </button>
+
+        <div id="domain-3" class="collapse">
+          <div class="domain-content">
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-10</span>
+                <span class="criterion-badge">عصور ونظريات أدبية ونقدية</span>
+              </div>
+              <p class="criterion-p">تحديد عصور الأدب وفنونه ومدارسه وشخصياته، وإدراك مفهوم النقد ومصطلحاته ومذاهبه، ومعرفة أبرز الأعلام والفنون الأدبية والمدارس والمؤلفات وتحليل النص الأدبي.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 4: البلاغة -->
+      <div class="domain-accordion-card domain-item" data-domain="البلاغة">
+        <button class="domain-trigger" type="button" data-bs-toggle="collapse" data-bs-target="#domain-4" aria-expanded="false" aria-controls="domain-4">
+          <div class="domain-title-group">
+            <div class="domain-icon"><i class="bi bi-feather text-warning" style="color: #b45309 !important;"></i></div>
+            <div>
+              <h2 class="domain-name">البلاغة</h2>
+              <div class="domain-meta">4 معايير (6-2-11 إلى 6-2-14)</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <span class="badge-weight">13%</span>
+            <i class="bi bi-chevron-down chevron-icon"></i>
+          </div>
+        </button>
+
+        <div id="domain-4" class="collapse">
+          <div class="domain-content">
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-11</span>
+                <span class="criterion-badge">الفصاحة والبلاغة</span>
+              </div>
+              <p class="criterion-p">توضيح مفهومي الفصاحة والبلاغة وما يخل بهما.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-12</span>
+                <span class="criterion-badge">علم البيان</span>
+              </div>
+              <p class="criterion-p">إدراك أسرار الأساليب البيانية: المجاز والتشبيه والكناية والاستعارة وخصائص كل منها.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-13</span>
+                <span class="criterion-badge">علم المعاني</span>
+              </div>
+              <p class="criterion-p">شرح دلالات التراكيب وخصائصها البلاغية وفق علم المعاني.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-14</span>
+                <span class="criterion-badge">علم البديع</span>
+              </div>
+              <p class="criterion-p">اكتشاف المحسنات البديعية وأثرها في جمال النص.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 5: العروض والقافية -->
+      <div class="domain-accordion-card domain-item" data-domain="العروض والقافية">
+        <button class="domain-trigger" type="button" data-bs-toggle="collapse" data-bs-target="#domain-5" aria-expanded="false" aria-controls="domain-5">
+          <div class="domain-title-group">
+            <div class="domain-icon"><i class="bi bi-music-note-beamed text-danger"></i></div>
+            <div>
+              <h2 class="domain-name">العروض والقافية</h2>
+              <div class="domain-meta">معيار واحد (6-2-15)</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <span class="badge-weight">3%</span>
+            <i class="bi bi-chevron-down chevron-icon"></i>
+          </div>
+        </button>
+
+        <div id="domain-5" class="collapse">
+          <div class="domain-content">
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-15</span>
+                <span class="criterion-badge">أوزان وبحور الشعر</span>
+              </div>
+              <p class="criterion-p">فهم مصطلحات علمي العروض والقافية، ومعرفة الكتابة العروضية والوزن والتقطيع، وتحديد البحور وعيوب القافية.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 6: علم اللغة -->
+      <div class="domain-accordion-card domain-item" data-domain="علم اللغة">
+        <button class="domain-trigger" type="button" data-bs-toggle="collapse" data-bs-target="#domain-6" aria-expanded="false" aria-controls="domain-6">
+          <div class="domain-title-group">
+            <div class="domain-icon"><i class="bi bi-translate text-teal" style="color: #0d9488;"></i></div>
+            <div>
+              <h2 class="domain-name">علم اللغة</h2>
+              <div class="domain-meta">معيار واحد (6-2-16)</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <span class="badge-weight">5%</span>
+            <i class="bi bi-chevron-down chevron-icon"></i>
+          </div>
+        </button>
+
+        <div id="domain-6" class="collapse">
+          <div class="domain-content">
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-16</span>
+                <span class="criterion-badge">فقه اللغة والمعاجم</span>
+              </div>
+              <p class="criterion-p">شرح مفهوم اللغة وتطورها وعلومها وخصائصها ونظريات اكتسابها، ويتضمن المعاجم والأصوات والدلالة والمولد والمعرب والدخيل.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 7: المهارات اللغوية -->
+      <div class="domain-accordion-card domain-item" data-domain="المهارات اللغوية">
+        <button class="domain-trigger" type="button" data-bs-toggle="collapse" data-bs-target="#domain-7" aria-expanded="false" aria-controls="domain-7">
+          <div class="domain-title-group">
+            <div class="domain-icon"><i class="bi bi-chat-quote-fill text-indigo" style="color: #4338ca;"></i></div>
+            <div>
+              <h2 class="domain-name">المهارات اللغوية</h2>
+              <div class="domain-meta">3 معايير (6-2-17 إلى 6-2-19)</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <span class="badge-weight">11%</span>
+            <i class="bi bi-chevron-down chevron-icon"></i>
+          </div>
+        </button>
+
+        <div id="domain-7" class="collapse">
+          <div class="domain-content">
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-17</span>
+                <span class="criterion-badge">الاستماع والتحدث</span>
+              </div>
+              <p class="criterion-p">إدراك المصطلحات والمفاهيم المرتبطة بالاستماع والتحدث «التواصل الشفهي»، واستعمال الاستراتيجيات المناسبة لفهم المسموع والتواصل مع الآخرين.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-18</span>
+                <span class="criterion-badge">القراءة</span>
+              </div>
+              <p class="criterion-p">تحليل النص المقروء وتقويمه وفهم المصطلحات المرتبطة بالقراءة.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-19</span>
+                <span class="criterion-badge">الكتابة والإملاء</span>
+              </div>
+              <p class="criterion-p">معرفة المصطلحات والمفاهيم المرتبطة بالكتابة والقواعد الإملائية وعلامات الترقيم والتمييز بين الفنون الكتابية.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain 8: طرق تدريس اللغة العربية -->
+      <div class="domain-accordion-card domain-item" data-domain="طرق تدريس اللغة العربية">
+        <button class="domain-trigger" type="button" data-bs-toggle="collapse" data-bs-target="#domain-8" aria-expanded="false" aria-controls="domain-8">
+          <div class="domain-title-group">
+            <div class="domain-icon"><i class="bi bi-mortarboard-fill text-fuchsia" style="color: #a21caf;"></i></div>
+            <div>
+              <h2 class="domain-name">طرق تدريس اللغة العربية</h2>
+              <div class="domain-meta">6 معايير (6-2-20 إلى 6-2-25)</div>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-1">
+            <span class="badge-weight">17%</span>
+            <i class="bi bi-chevron-down chevron-icon"></i>
+          </div>
+        </button>
+
+        <div id="domain-8" class="collapse">
+          <div class="domain-content">
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-20</span>
+                <span class="criterion-badge">استراتيجيات حديثة</span>
+              </div>
+              <p class="criterion-p">استعمال الاستراتيجيات التدريسية الحديثة والأنشطة والوسائل المناسبة لتعليم اللغة العربية.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-21</span>
+                <span class="criterion-badge">تدريس النحو والصرف</span>
+              </div>
+              <p class="criterion-p">تطبيق الاستراتيجيات التدريسية الحديثة في تعليم قواعد تركيب الجمل والبنية الصرفية للمفردات.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-22</span>
+                <span class="criterion-badge">تدريس الأدب والبلاغة</span>
+              </div>
+              <p class="criterion-p">تحليل النص الأدبي واستنباط الجوانب البلاغية وفق استراتيجيات التدريس.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-23</span>
+                <span class="criterion-badge">تدريس الشفهي</span>
+              </div>
+              <p class="criterion-p">استعمال استراتيجيات تعليم الاستماع والتحدث «التواصل الشفهي» وفق المرحلة الدراسية والموقف اللغوي المناسب.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-24</span>
+                <span class="criterion-badge">تدريس القراءة</span>
+              </div>
+              <p class="criterion-p">استعمال استراتيجيات تعليم المهارات القرائية وفق المرحلة الدراسية والموقف اللغوي المناسب.</p>
+            </div>
+
+            <div class="criterion-item">
+              <div class="criterion-header-row">
+                <span class="code-chip">6-2-25</span>
+                <span class="criterion-badge">تدريس الكتابة</span>
+              </div>
+              <p class="criterion-p">معرفة استراتيجيات تعليم فنون الكتابة الصحيحة ومهاراتها الوظيفية والإبداعية وفق المرحلة الدراسية والموقف اللغوي المناسب.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Priority Focus Callout -->
+    <div class="focus-card-modern">
+      <h3>
+        <i class="bi bi-lightning-charge-fill"></i>
+        أولوية المذاكرة بحسب الأوزان
+      </h3>
+      <p>
+        تمثّل مجالات <strong>(النحو + الأدب والنقد + طرق التدريس + البلاغة)</strong> ما يعادل <strong>75%</strong> من إجمالي درجة الاختبار.
+      </p>
+      <p class="text-white-50 small mb-0">
+        بينما تمثّل المجالات الأربعة الأخرى (الصرف، علم اللغة، المهارات اللغوية، العروض والقافية) مجتمعة 25%.
+      </p>
+    </div>
+
+    <!-- Official Sources & Platforms Only -->
+    <section class="sources-box">
+      <h3 class="sources-title">
+        <i class="bi bi-patch-check-fill text-success"></i>
+        المصادر والمنصات الرسمية المعتمدة
+      </h3>
+
+      <!-- 1. ETEC -->
+      <a href="https://etec.gov.sa" target="_blank" rel="noopener" class="official-source-card">
+        <div class="source-info">
+          <div class="source-icon-wrap icon-etec">
+            <i class="bi bi-bank2"></i>
+          </div>
+          <div>
+            <div class="source-text-title">هيئة تقويم التعليم والتدريب (ETEC)</div>
+            <div class="source-text-sub">etec.gov.sa</div>
+          </div>
+        </div>
+        <span class="official-tag">الجهة المصدرة</span>
+      </a>
+
+      <!-- 2. Qiyas -->
+      <a href="https://e-services.etec.gov.sa" target="_blank" rel="noopener" class="official-source-card">
+        <div class="source-info">
+          <div class="source-icon-wrap icon-qiyas">
+            <i class="bi bi-journal-check"></i>
+          </div>
+          <div>
+            <div class="source-text-title">المركز الوطني للقياس (قياس)</div>
+            <div class="source-text-sub">qiyas.sa / e-services</div>
+          </div>
+        </div>
+        <span class="official-tag">نظام الاختبارات</span>
+      </a>
+
+      <!-- 3. Sadeed -->
+      <a href="https://sadeed.etec.gov.sa" target="_blank" rel="noopener" class="official-source-card">
+        <div class="source-info">
+          <div class="source-icon-wrap icon-sadeed">
+            <i class="bi bi-award-fill"></i>
+          </div>
+          <div>
+            <div class="source-text-title">منصة سديد للرخص المهنية</div>
+            <div class="source-text-sub">sadeed.etec.gov.sa</div>
+          </div>
+        </div>
+        <span class="official-tag">إصدار الرخص</span>
+      </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center text-muted small mt-4 pt-2 border-top">
+      جميع المعايير والأوزان مستندة إلى الأدلة الرسمية المعتمدة لاختبار الرخصة المهنية للمعلمين.
+    </footer>
+
+  </main>
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const searchInput = document.getElementById('criterionSearch');
+      const searchCounter = document.getElementById('searchCounter');
+      const domainCards = document.querySelectorAll('.domain-accordion-card');
+      const collapseElements = document.querySelectorAll('.domain-accordion-card .collapse');
+      const btnExpandAll = document.getElementById('btnExpandAll');
+      const btnCollapseAll = document.getElementById('btnCollapseAll');
+
+      // Expand All
+      btnExpandAll.addEventListener('click', () => {
+        collapseElements.forEach(el => {
+          const bsCollapse = bootstrap.Collapse.getOrCreateInstance(el, { toggle: false });
+          bsCollapse.show();
+        });
+      });
+
+      // Collapse All
+      btnCollapseAll.addEventListener('click', () => {
+        collapseElements.forEach(el => {
+          const bsCollapse = bootstrap.Collapse.getOrCreateInstance(el, { toggle: false });
+          bsCollapse.hide();
+        });
+      });
+
+      // Update Card Visual State when opened or closed
+      collapseElements.forEach(coll => {
+        coll.addEventListener('show.bs.collapse', function () {
+          this.closest('.domain-accordion-card')?.classList.add('is-open');
+        });
+        coll.addEventListener('hide.bs.collapse', function () {
+          this.closest('.domain-accordion-card')?.classList.remove('is-open');
+        });
+      });
+
+      // Real-time Search Across all domains and criteria
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim().toLowerCase();
+
+        if (!query) {
+          searchCounter.classList.add('d-none');
+          domainCards.forEach(card => {
+            card.classList.remove('d-none');
+            const items = card.querySelectorAll('.criterion-item');
+            items.forEach(item => item.classList.remove('d-none'));
+          });
+          return;
+        }
+
+        let totalMatches = 0;
+
+        domainCards.forEach(card => {
+          const domainName = (card.getAttribute('data-domain') || '').toLowerCase();
+          const items = card.querySelectorAll('.criterion-item');
+          let domainHasMatch = false;
+
+          if (domainName.includes(query)) {
+            domainHasMatch = true;
+            items.forEach(item => item.classList.remove('d-none'));
+            totalMatches += items.length;
+          } else {
+            items.forEach(item => {
+              const text = item.textContent.toLowerCase();
+              if (text.includes(query)) {
+                item.classList.remove('d-none');
+                domainHasMatch = true;
+                totalMatches++;
+              } else {
+                item.classList.add('d-none');
+              }
+            });
+          }
+
+          const collapseEl = card.querySelector('.collapse');
+          if (domainHasMatch) {
+            card.classList.remove('d-none');
+            if (collapseEl) {
+              const bsCol = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
+              bsCol.show();
+            }
+          } else {
+            card.classList.add('d-none');
+          }
+        });
+
+        // Search feedback
+        searchCounter.classList.remove('d-none');
+        if (totalMatches > 0) {
+          searchCounter.textContent = `تم العثور على ${totalMatches} معيار مطابق`;
+          searchCounter.className = "text-success small mt-2 fw-bold text-center";
+        } else {
+          searchCounter.textContent = 'لا توجد نتائج مطابقة للبحث';
+          searchCounter.className = "text-danger small mt-2 fw-bold text-center";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
