@@ -29,7 +29,7 @@
     .topbar { background: #111827; color: #fff; padding: 1rem; }
     .page-container { width: calc(100% - 2rem); max-width: 960px; margin-inline: auto; }
     main { padding-block: 2rem; }
-    .hero-banner { background: linear-gradient(135deg, #1e3a8a 0%, #0f766e 100%); color: #fff; border-radius: 1rem; box-shadow: 0 10px 25px -5px rgba(30,58,138,.25); padding: clamp(1.5rem, 5vw, 3rem); }
+    .hero-banner { background: linear-gradient(135deg, #1e3a8a 0%, #0f766e 100%); color: #fff; border-radius: 1rem; box-shadow: 0 10px 25px -5px rgba(30,58,138,.25); padding: clamp(1rem, 3vw, 1.5rem); }
     .hero-banner h1 { font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 800; }
     .links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 1rem; }
     .custom-card { display: flex; align-items: center; gap: 1rem; padding: 1.5rem; background: var(--card-bg); border: 1px solid #e2e8f0; border-radius: 1rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,.05); text-decoration: none; color: #1e293b; transition: border-color .2s, box-shadow .2s; }
@@ -42,9 +42,9 @@
     .topnav { display:flex; flex-wrap:wrap; align-items:center; gap:.6rem; }
     .topnav a { color:#fff; text-decoration:none; padding:.55rem .9rem; border-radius:.75rem; }
     .topnav a:hover,.topnav a[aria-current] { background:#ffffff20; }
-    .dedication { max-width:740px; margin:1.25rem auto 0; line-height:2.1; font-size:clamp(.95rem,2.5vw,1.06rem); }
-    .dedication p { margin:0 0 .8rem; }
-    .dedication p:first-child { color:#fff1f2; font-weight:700; font-size:1.15em; }
+    .dedication { max-width:100%; margin:.6rem auto 0; line-height:1.6; font-size:clamp(.9rem,2.2vw,1rem); }
+    .dedication p { margin:0; }
+    .dedication strong { color:#fff1f2; font-weight:700; }
     .section-panel { background:#fff; border:1px solid #e2e8f0; border-radius:1.25rem; padding:clamp(1rem,3vw,1.75rem); box-shadow:0 8px 24px #0f172a08; margin-top:1.75rem; }
     .section-title { display:flex; align-items:center; gap:.65rem; padding:1rem 1.2rem; border-radius:.9rem; font-size:1.25rem; font-weight:800; margin:0 0 1.25rem; }
     .trial-title { background:linear-gradient(120deg,#eef2ff,#e0e7ff); color:#1e3a8a; border-inline-start:5px solid #1e3a8a; }
@@ -67,13 +67,7 @@
   <main class="page-container">
     <section class="hero-banner mb-4 text-center" aria-labelledby="page-title">
       <h1 id="page-title" class="mb-2">اهلا بالحب <span style="color:#dc2626" aria-label="قلب أحمر">♥</span></h1>
-      <div class="dedication">
-        <p>إلى الحبيبة الغالية على قلبي..</p>
-        <p>أهديكِ هذا الموقع؛ ليكون خطوةً صغيرة في طريق نجاحك، وعونًا لكِ في أداء اختبارك وتحقيق أعلى الدرجات التي تستحقينها.</p>
-        <p>فأنا لا أتمنى لكِ النجاح فقط، بل أتمنى أن أراكِ دائمًا في القمة، متألقةً كما عرفكِ قلبي، وفخورةً بنفسكِ..</p>
-        <p>كل ما يُعينكِ على الوصول يسعدني، وكل إنجازٍ لكِ أشعر أنه جزءٌ من فرحتي.</p>
-        <p>أحبكِ، وأتمنى لكِ مستقبلًا يليق بقلبكِ الجميل وطموحكِ الكبير.</p>
-      </div>
+      <div class="dedication"><p><strong>الى الحب ونبض القلب..</strong> أهديكِ هذا الموقع؛ ليكون خطوةً صغيرة في طريق نجاحك، وعونًا لكِ في أداء اختبارك وتحقيق أعلى الدرجات التي تستحقينها، فأنا لا أتمنى لكِ النجاح فقط، بل أتمنى أن أراكِ دائمًا في القمة، متألقةً كما عرفكِ قلبي، وفخورةً بنفسكِ.. كل ما يُعينكِ على الوصول يسعدني، وكل إنجازٍ لكِ أشعر أنه جزءٌ من فرحتي. أحبكِ، وأتمنى لكِ مستقبلًا يليق بقلبكِ الجميل وطموحكِ الكبير.</p></div>
     </section>
     <a class="custom-card standards-link" href="standards.html"><span class="card-icon"><i class="bi bi-bookmark-check" aria-hidden="true"></i></span><span><span class="link-title">المعايير المهنية للغة العربية</span><small>تعرّفي على المعايير قبل بدء الاختبارات.</small></span><i class="bi bi-arrow-left card-arrow" aria-hidden="true"></i></a>
     <section class="section-panel trial-panel" aria-labelledby="links-title">
