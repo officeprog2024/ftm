@@ -519,10 +519,34 @@
       .app-container { max-width: 100%; padding: 0; }
       .domain-accordion-card { break-inside: avoid; border: 1px solid #bbb; margin-bottom: 12px; }
     }
+  
+    .topbar { position:sticky; top:0; z-index:1100; background:linear-gradient(110deg,#111827,#1e3a8a); color:#fff; padding:1rem; box-shadow:0 4px 18px #0f172a20; }
+    .page-container { width:calc(100% - 2rem); max-width:960px; margin-inline:auto; }
+    .topnav { display:flex; flex-wrap:wrap; align-items:center; gap:.6rem; }
+    .topnav a { color:#fff; text-decoration:none; padding:.55rem .9rem; border-radius:.75rem; border:1px solid transparent; transition:background .2s,border-color .2s; }
+    .topnav a:hover,.topnav a[aria-current] { background:#ffffff20; border-color:#ffffff30; }
+    .topnav a:focus-visible { outline:3px solid #f59e0b; outline-offset:3px; }
+    @media print { .topbar { display:none!important; } }
+
+    .app-container { width:calc(100% - 2rem); max-width:960px; margin-inline:auto; padding:2rem 0; }
+    .sticky-toolbar { top:calc(var(--site-header-height,80px) + 8px); }
+    .hero-card { padding:clamp(1rem,3vw,1.5rem); background:linear-gradient(125deg,#eef2ff 0%,#f0fdfa 70%,#fffbeb 100%); border-color:#c7d2fe; box-shadow:0 10px 25px -5px #1e3a8a18; }
+    .hero-title { color:#1e3a8a; }
+    .domain-accordion-card { box-shadow:0 5px 18px #0f172a07; }
+    .domain-trigger { padding-block:1.15rem; }
+    html { scroll-padding-top:calc(var(--site-header-height,80px) + 16px); }
+    @media(max-width:480px) { .app-container { padding-block:1.25rem; } }
+    @media print { .app-container { width:100%; max-width:100%; padding:0; } }
   </style>
 </head>
 
 <body>
+  <header class="topbar">
+    <div class="page-container d-flex align-items-center gap-2 fw-bold">
+      <i class="bi bi-mortarboard-fill text-warning fs-4" aria-hidden="true"></i>
+      <nav class="topnav" aria-label="التنقل الرئيسي"><a href="index.html">الرئيسية</a><a href="standards.html" aria-current="page">المعايير</a></nav>
+    </div>
+  </header>
   <main class="app-container">
 
     <!-- Hero Card -->
@@ -537,7 +561,7 @@
         <span class="text-success">تخصص لغة عربية 2</span>
       </h1>
       <p class="hero-desc">
-        عرض مخصص ومحسن بالكامل للهواتف الذكية مع رؤوس بطاقات ملوّنة ومظللة ومصادر معتمدة رسمياً.
+        تعرّفي على المجالات والمعايير، وابحثي بينها بسهولة، لتبدئي استعدادك للاختبار بخطوات واضحة.
       </p>
     </header>
 
@@ -1138,6 +1162,15 @@
         }
       });
     });
+  </script>
+<script>
+    (() => {
+      const header = document.querySelector('.topbar');
+      const updateHeaderHeight = () => document.documentElement.style.setProperty('--site-header-height', header.getBoundingClientRect().height + 'px');
+      updateHeaderHeight();
+      window.addEventListener('resize', updateHeaderHeight);
+      if (window.ResizeObserver) new ResizeObserver(updateHeaderHeight).observe(header);
+    })();
   </script>
 </body>
 </html>
