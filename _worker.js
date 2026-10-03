@@ -31,7 +31,7 @@ function summarize(rows){
 async function handle(request,env){
  const url=new URL(request.url),path=url.pathname,now=Date.now();
  if(path==='/_worker.js'||path==='/_routes.json')return new Response('Not found',{status:404});
- const publicPaths=['/login','/login.html','/login.js','/account.css','/favicon.svg'];
+ const publicPaths=['/login','/login.html','/login.js','/account.css','/favicon.svg','/site.css','/site-nav.js'];
  if(publicPaths.includes(path))return env.ASSETS.fetch(request);
  if(path.startsWith('/api/')&&request.method!=='GET'&&request.headers.get('Origin')!==url.origin)return json({error:'الطلب غير مسموح'},403);
  if(path==='/api/login'&&request.method==='POST'){
@@ -44,7 +44,7 @@ async function handle(request,env){
   const material=await crypto.subtle.importKey('raw',encoder.encode(input.password),'PBKDF2',false,['deriveBits']);
   const computed=hex(await crypto.subtle.deriveBits({name:'PBKDF2',salt:encoder.encode(u?.salt||'missing-user-salt'),iterations:100000,hash:'SHA-256'},material,256));
   let mismatch=0;const expected=u?.hash||'0'.repeat(64);for(let i=0;i<64;i++)mismatch|=computed.charCodeAt(i)^expected.charCodeAt(i);if(!u||mismatch)return json({error:'اسم المستخدم أو كلمة المرور غير صحيحة'},401);
-  const token=hex(crypto.getRandomValues(new Uint8Array(32)));await env.DB.prepare('INSERT INTO sessions VALUES (?,?,?)').bind(await digest(token),u.id,now+30*86400000).run();
+  const token=hex(crypto.getRandomValues(new Uint8Array(32)));await env.DB.prepare('UPDATE users SET last_login=? WHERE id=?').bind(now,u.id).run();await env.DB.prepare('INSERT INTO sessions VALUES (?,?,?)').bind(await digest(token),u.id,now+30*86400000).run();
   await env.DB.batch([env.DB.prepare('DELETE FROM sessions WHERE expires<?').bind(now),env.DB.prepare('DELETE FROM attempts WHERE until<?').bind(now)]);
   return json({username:u.username},200,{'Set-Cookie':cookie(token,30*86400)});
  }
@@ -58,7 +58,7 @@ async function handle(request,env){
   let events;try{events=input.events.map(e=>cleanEvent(e,now));}catch{return json({error:"بيانات الإحصائيات غير صالحة"},400);}if(events.length)await env.DB.batch(events.map(e=>env.DB.prepare('INSERT OR IGNORE INTO events VALUES (?,?,?,?,?,?)').bind(user.user_id,e.id,e.type,e.bank,JSON.stringify(e.payload),e.at)));
   return json({ok:true});
  }
- if(path==='/api/stats'&&request.method==='GET'){const r=await env.DB.prepare('SELECT type,bank,payload,at FROM events WHERE user_id=? ORDER BY at,id').bind(user.user_id).all();return json({username:user.user_id,...summarize(r.results)});}
+ if(path==='/api/stats'&&request.method==='GET'){const r=await env.DB.prepare('SELECT type,bank,payload,at FROM events WHERE user_id=? ORDER BY at,id').bind(user.user_id).all();const profile=await env.DB.prepare('SELECT last_login FROM users WHERE id=?').bind(user.user_id).first();return json({username:user.user_id,lastLogin:profile?.last_login||null,...summarize(r.results)});}
  if(path.startsWith('/api/'))return json({error:'غير موجود'},404);
  const asset=await env.ASSETS.fetch(request);const response=new Response(asset.body,asset);response.headers.set('Cache-Control','private, no-store');response.headers.set('X-Content-Type-Options','nosniff');response.headers.set('Referrer-Policy','same-origin');response.headers.set('X-Frame-Options','DENY');return response;
 }
