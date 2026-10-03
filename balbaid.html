@@ -129,6 +129,8 @@
       background: #f0fdf4;
     }
   </style>
+<link rel="stylesheet" href="account.css">
+<script src="account.js"></script>
 </head>
 <body>
 
@@ -371,6 +373,10 @@
     /* ans: 0 = (أ), 1 = (ب), 2 = (جـ), 3 = (د) */
     const charBadges = ["(أ)", "(ب)", "(جـ)", "(د)"];
 
+    const accountBank='balbaid';
+    FtmAccount.setBank(accountBank);
+    let accountTestId=null;
+    let accountSubmitted=false;
     let currentQuestions = [];
     let userAnswers = {};
     let timerInterval = null;
@@ -433,6 +439,7 @@
       // اختيار عشوائي للأسئلة
       const shuffled = shuffleArray(pool);
       currentQuestions = shuffled.slice(0, targetCount);
+      accountTestId=crypto.randomUUID();accountSubmitted=false;
       userAnswers = {};
 
       // إعداد المؤقت: دقيقة لكل سؤال
@@ -487,6 +494,7 @@
         `;
 
         container.appendChild(qCard);
+        FtmAccount.observe(qCard,q.id,accountTestId,accountBank);
       });
     }
 
@@ -566,6 +574,7 @@
     }
 
     function calculateAndShowResults() {
+      if(!accountSubmitted&&accountTestId){const answers={};currentQuestions.forEach((q,i)=>{if(userAnswers[i]!==undefined)answers[q.id]=userAnswers[i];});FtmAccount.complete(accountTestId,accountBank,currentQuestions.map(q=>q.id),answers);accountSubmitted=true;}
       let correctCount = 0;
       let incorrectCount = 0;
       let skippedCount = 0;

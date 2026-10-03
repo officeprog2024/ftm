@@ -1,5 +1,6 @@
 'use strict';
 const C=RoundCore,$=id=>document.getElementById(id),KEY=`ftm-${C.bankId}-rounds-v1`;
+FtmAccount.setBank(C.bankId);
 let data={version:1,rounds:[],selectedId:null},pdfUrl=null,busy=false;
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const current=()=>data.rounds.find(r=>r.id===data.selectedId);
@@ -22,7 +23,7 @@ function render(){hidePdf();refreshSaved();const r=current();$('quizArea').repla
 }
 function renderQuiz(r){const t=r.active;
  $('quizArea').innerHTML=`<section class="panel"><h2 class="h5 fw-bold">الاختبار ${r.tests.length+1}</h2><p id="answered" aria-live="polite"></p><p class="small text-muted">تُحفظ اختياراتك تلقائيًا. يمكنك مغادرة الصفحة والعودة لإكمال الاختبار.</p></section>`;
- for(const [i,id]of t.ids.entries()){const q=C.bank.get(id),card=document.createElement('article');card.className='question';card.innerHTML=`<fieldset><legend class="fs-6 fw-bold">${i+1}. ${esc(q.q)}</legend><p class="small text-muted">${esc(sectionNames[q.sec])}</p>${q.opts.map((opt,j)=>`<label class="choice"><input type="radio" name="q-${id}" value="${j}" ${t.answers[id]===j?'checked':''}><span>${esc(opt)}</span></label>`).join('')}</fieldset>`;card.addEventListener('change',e=>{t.answers[id]=Number(e.target.value);save();progress();});$('quizArea').append(card);}
+ for(const [i,id]of t.ids.entries()){const q=C.bank.get(id),card=document.createElement('article');card.className='question';card.innerHTML=`<fieldset><legend class="fs-6 fw-bold">${i+1}. ${esc(q.q)}</legend><p class="small text-muted">${esc(sectionNames[q.sec])}</p>${q.opts.map((opt,j)=>`<label class="choice"><input type="radio" name="q-${id}" value="${j}" ${t.answers[id]===j?'checked':''}><span>${esc(opt)}</span></label>`).join('')}</fieldset>`;card.addEventListener('change',e=>{t.answers[id]=Number(e.target.value);save();progress();});$('quizArea').append(card);FtmAccount.observe(card,q.id,r.id+':'+t.startedAt,C.bankId);}
  const actions=document.createElement('div');actions.className='panel actions';actions.innerHTML='<button id="submit" class="btn btn-success">إنهاء الاختبار وعرض النتيجة</button><button id="pause" class="btn btn-outline-primary">حفظ ومتابعة لاحقًا</button>';$('quizArea').append(actions);
  function progress(){$('answered').textContent=`أجبت عن ${Object.keys(t.answers).length} من ${t.ids.length} سؤالًا`;}
  progress();$('pause').onclick=()=>{if(save())notice('حُفظ الاختبار الجاري. يمكنك العودة إلى هذه الصفحة في المتصفح نفسه لإكماله.');};

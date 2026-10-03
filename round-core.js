@@ -21,7 +21,7 @@ function finish(r){
  if(!r.active)return null;
  const t={...r.active,completedAt:new Date().toISOString()};r.tests.push(t);
  const correct=new Set(r.correct);for(const id of t.ids)if(t.answers[id]===bank.get(id).ans)correct.add(id);
- r.correct=[...correct];r.active=null;return t;
+ r.correct=[...correct];r.active=null;if(scope.FtmAccount)scope.FtmAccount.complete(r.id+':'+r.tests.length,bankId,t.ids,t.answers);return t;
 }
 function wrong(t){return t.ids.filter(id=>t.answers[id]!==undefined&&t.answers[id]!==bank.get(id).ans).map(id=>({q:bank.get(id),answer:t.answers[id]}));}
 function mistakes(r){const all=new Map();for(const t of r.tests)for(const e of wrong(t))all.set(e.q.id,e);return [...all.values()];}
