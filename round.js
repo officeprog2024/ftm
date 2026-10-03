@@ -8,7 +8,7 @@ function notice(message,error=false){$('notice').className='alert '+(error?'aler
 function save(){try{localStorage.setItem(KEY,JSON.stringify(data));return true;}catch{notice('تعذر الحفظ في المتصفح. نزّل ملف حفظ الجولة قبل مغادرة الصفحة.',true);return false;}}
 function hidePdf(){if(pdfUrl)URL.revokeObjectURL(pdfUrl);pdfUrl=null;$('pdfArea').classList.add('d-none');$('pdfPreview').removeAttribute('src');}
 function download(content,name,type){const url=URL.createObjectURL(new Blob([content],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),30000);}
-function title(r){return sectionNames[r.section]||'جميع الأقسام';}
+function title(r){return (sectionNames[r.section]||'جميع الأقسام')+(r.topic&&r.topic!=='all'?' · '+r.topic:'');}
 function refreshSaved(){const el=$('saved');el.replaceChildren();if(!data.rounds.length){el.add(new Option('لا توجد جولات محفوظة',''));return;}
  data.rounds.forEach((r,i)=>el.add(new Option(`الجولة ${i+1} · ${title(r)} · ${r.status==='ended'?'منتهية':'قيد التقدم'} · ${r.tests.length} اختبار`,r.id)));el.value=data.selectedId;}
 function render(){hidePdf();refreshSaved();const r=current();$('quizArea').replaceChildren();$('resultArea').replaceChildren();if(!r){$('roundArea').replaceChildren();return;}
@@ -17,7 +17,7 @@ function render(){hidePdf();refreshSaved();const r=current();$('quizArea').repla
  $('backup').onclick=()=>download(JSON.stringify({version:1,bankId:C.bankId,round:r},null,2),`${C.bankId}-round.json`,'application/json');
  if($('next'))$('next').onclick=()=>{C.start(r);save();render();$('quizArea').scrollIntoView({behavior:'smooth'});};
  if($('end'))$('end').onclick=()=>{if(!confirm(r.active?'سيُنهى الاختبار الجاري بإجاباتك الحالية وتُحفظ النتائج، ثم تنتهي الجولة. هل تريد المتابعة؟':'إنهاء الجولة مع الاحتفاظ بنتائجها؟'))return;C.finish(r);r.status='ended';save();render();};
- $('restart').onclick=()=>{if(!confirm('بدء جولة جديدة بالإعدادات نفسها وإتاحة جميع الأسئلة مجددًا؟ ستبقى الجولة السابقة محفوظة.'))return;C.finish(r);r.status='ended';const fresh=C.create(r.section,r.count,r.exclude);data.rounds.push(fresh);data.selectedId=fresh.id;C.start(fresh);save();render();};
+ $('restart').onclick=()=>{if(!confirm('بدء جولة جديدة بالإعدادات نفسها وإتاحة جميع الأسئلة مجددًا؟ ستبقى الجولة السابقة محفوظة.'))return;C.finish(r);r.status='ended';const fresh=C.create(r.section,r.count,r.exclude,r.topic||"all");data.rounds.push(fresh);data.selectedId=fresh.id;C.start(fresh);save();render();};
  $('roundPdf').onclick=()=>makePdf(C.mistakes(r),'الأسئلة الخاطئة خلال الجولة',`${C.bankId}-round-mistakes.pdf`);
  if(r.active)renderQuiz(r);renderResults(r);
 }
@@ -54,7 +54,8 @@ async function makePdf(entries,label,filename){
  }catch(e){console.error(e);notice('تعذر إنشاء PDF. حاول مرة أخرى.',true);}finally{host?.remove();busy=false;}
 }
 for(const [key,name]of Object.entries(sectionNames))$('section').add(new Option(name,key));
-$('create').onclick=()=>{try{const r=C.create($('section').value,Number($('count').value),$('exclude').checked);data.rounds.push(r);data.selectedId=r.id;C.start(r);save();render();$('quizArea').scrollIntoView({behavior:'smooth'});}catch(e){notice(e.message,true);}};
+if($('topic')){const topics=()=>{const el=$('topic');el.replaceChildren(new Option('جميع الموضوعات','all'));[...new Set(questionsDatabase.filter(q=>q.quizEligible!==false&&($('section').value==='all'||q.sec===$('section').value)).map(q=>q.topic))].sort((a,b)=>a.localeCompare(b,'ar')).forEach(t=>el.add(new Option(t,t)));};$('section').addEventListener('change',topics);topics();}
+$('create').onclick=()=>{try{const r=C.create($('section').value,Number($('count').value),$('exclude').checked,$('topic')?.value||'all');data.rounds.push(r);data.selectedId=r.id;C.start(r);save();render();$('quizArea').scrollIntoView({behavior:'smooth'});}catch(e){notice(e.message,true);}};
 $('saved').onchange=()=>{data.selectedId=$('saved').value;save();render();};
 $('importButton').onclick=()=>$('import').click();
 $('import').onchange=async e=>{try{const file=e.target.files[0];if(!file)return;if(file.size>5*1024*1024)throw Error('حجم الملف أكبر من الحد المسموح (5 ميجابايت)');const r=C.validate(JSON.parse(await file.text()));if(data.rounds.some(x=>x.id===r.id)){if(!confirm('هذه الجولة موجودة. استبدال النسخة المحلية بالملف المستورد؟'))return;data.rounds=data.rounds.filter(x=>x.id!==r.id);}data.rounds.push(r);data.selectedId=r.id;save();render();notice('تم استيراد الجولة.');}catch(e){notice(e.message,true);}finally{e.target.value='';}};

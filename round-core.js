@@ -3,12 +3,13 @@
 'use strict';
 const bankId=typeof quizConfig==='undefined'?'balbaid':quizConfig.id;
 const bank=new Map(questionsDatabase.map(q=>[q.id,q]));
-const pool=r=>questionsDatabase.filter(q=>r.section==='all'||q.sec===r.section);
+const pool=r=>questionsDatabase.filter(q=>q.quizEligible!==false&&(r.section==='all'||q.sec===r.section)&&(!r.topic||r.topic==='all'||q.topic===r.topic));
 const available=r=>pool(r).filter(q=>!r.exclude||!r.correct.includes(q.id));
-function create(section,count,exclude){
+function create(section,count,exclude,topic="all"){
+ if(topic!=="all"&&!questionsDatabase.some(q=>q.quizEligible!==false&&q.topic===topic&&(section==="all"||q.sec===section)))throw Error("الموضوع غير صالح");
  if(section!=='all'&&!Object.hasOwn(sectionNames,section))throw Error('القسم غير صالح');
  if(!Number.isInteger(count)||count<1||count>questionsDatabase.length)throw Error(`اختر عددًا صحيحًا من 1 إلى ${questionsDatabase.length}`);
- return {id:crypto.randomUUID(),createdAt:new Date().toISOString(),section,count,exclude:!!exclude,status:'active',correct:[],tests:[],active:null};
+ return {id:crypto.randomUUID(),createdAt:new Date().toISOString(),section,topic,count,exclude:!!exclude,status:'active',correct:[],tests:[],active:null};
 }
 function start(r,random=Math.random){
  if(r.status!=='active'||r.active)throw Error('لا يمكن بدء اختبار الآن');
@@ -29,7 +30,7 @@ function score(t){const right=t.ids.filter(id=>t.answers[id]===bank.get(id).ans)
 function validate(raw){
  if(!raw||raw.version!==1||!raw.round)throw Error('ملف الجولة غير صالح أو بإصدار غير مدعوم');
  if((raw.bankId||'balbaid')!==bankId)throw Error('ملف الجولة يخص نموذج أسئلة مختلف');
- const r=raw.round;create(r.section,r.count,r.exclude);
+ const r=raw.round;create(r.section,r.count,r.exclude,r.topic||"all");
  if(typeof r.exclude!=='boolean'||!['active','ended'].includes(r.status)||typeof r.id!=='string'||r.id.length>100||typeof r.createdAt!=='string'||!Array.isArray(r.tests)||r.tests.length>10000)throw Error('بيانات الجولة غير صالحة');
  const allowed=new Set(pool(r).map(q=>q.id));
  function test(t){if(!t||!Array.isArray(t.ids)||!t.ids.length||t.ids.length>r.count||new Set(t.ids).size!==t.ids.length||t.ids.some(id=>!allowed.has(id))||!t.answers||typeof t.answers!=='object'||Array.isArray(t.answers))throw Error('بيانات الاختبار غير صالحة');
@@ -38,7 +39,7 @@ function validate(raw){
  const tests=r.tests.map(test),correct=new Set();for(const t of tests)for(const id of t.ids)if(t.answers[id]===bank.get(id).ans)correct.add(id);
  const active=r.active?test(r.active):null;
  if(r.status==='ended'&&active)throw Error('جولة منتهية تحتوي على اختبار جاري');
- return {id:r.id,createdAt:r.createdAt,section:r.section,count:r.count,exclude:r.exclude,status:r.status,tests,correct:[...correct],active};
+ return {id:r.id,createdAt:r.createdAt,section:r.section,topic:r.topic||"all",count:r.count,exclude:r.exclude,status:r.status,tests,correct:[...correct],active};
 }
 scope.RoundCore={bankId,bank,pool,available,create,start,finish,wrong,mistakes,score,validate};
 })(globalThis);

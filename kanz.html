@@ -133,7 +133,7 @@
 <script src="account.js"></script>
 <link rel="stylesheet" href="site.css">
 </head>
-<body><header class="site-header"><div class="site-nav-inner"><a class="site-brand" href="index.html">اهلا بالحب <span>♥</span></a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">القائمة ☰</button><nav class="site-menu" id="site-menu" aria-label="التنقل الرئيسي"><a href="index.html">الرئيسية</a><details class="site-dropdown"><summary>الاختبارات</summary><div class="site-dropdown-list"><a href="balbaid.html">بالبيد</a><a href="hemma.html">همة</a><a href="naba.html">نبا</a><a href="bader.html">بدر</a><a href="kanz.html">كنز</a></div></details><details class="site-dropdown"><summary>الجولات</summary><div class="site-dropdown-list"><a href="round.html">بالبيد</a><a href="hemma-round.html">همة</a><a href="naba-round.html">نبا</a><a href="bader-round.html">بدر</a><a href="kanz-round.html">كنز</a></div></details><details class="site-dropdown"><summary>الملازم</summary><div class="site-dropdown-list"><a href="balbaid-reading.html">بالبيد</a><a href="hemma-reading.html">همة</a><a href="naba-reading.html">نبا</a><a href="bader-reading.html">بدر</a><a href="kanz-reading.html">كنز</a></div></details><a href="standards.html">المعايير المهنية</a><a href="stats.html">إحصائياتي وأخطائي</a></nav></div></header>
+<body><header class="site-header"><div class="site-nav-inner"><a class="site-brand" href="index.html">اهلا بالحب <span>♥</span></a><button class="site-menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">القائمة ☰</button><nav class="site-menu" id="site-menu" aria-label="التنقل الرئيسي"><a href="index.html">الرئيسية</a><details class="site-dropdown"><summary>الاختبارات</summary><div class="site-dropdown-list"><a href="balbaid.html">بالبيد</a><a href="hemma.html">كنز</a><a href="naba.html">نبا</a><a href="bader.html">بدر</a><a href="kanz.html">كنز</a></div></details><details class="site-dropdown"><summary>الجولات</summary><div class="site-dropdown-list"><a href="round.html">بالبيد</a><a href="hemma-round.html">كنز</a><a href="naba-round.html">نبا</a><a href="bader-round.html">بدر</a><a href="kanz-round.html">كنز</a></div></details><details class="site-dropdown"><summary>الملازم</summary><div class="site-dropdown-list"><a href="balbaid-reading.html">بالبيد</a><a href="hemma-reading.html">كنز</a><a href="naba-reading.html">نبا</a><a href="bader-reading.html">بدر</a><a href="kanz-reading.html">كنز</a></div></details><a href="standards.html">المعايير المهنية</a><a href="stats.html">إحصائياتي وأخطائي</a></nav></div></header>
 
   
 
@@ -142,7 +142,7 @@
     <!-- الشاشة الأولى: إعداد الاختبار -->
     <section id="setupSection" class="custom-card p-4 p-md-5 mb-4">
       <div class="hero-banner p-4 p-md-5 mb-4 text-center">
-        <h1 class="h3 fw-bold mb-2">مولّد الاختبارات الإلكترونية الذكي</h1>
+        <h1 class="h3 fw-bold mb-2">اختبارات كنز</h1>
         <p class="mb-0 text-light opacity-90">
           اختبر جاهزيتك لاختبار كفايات المعلمين والمعلمات في تخصص اللغة العربية وفق معايير قياس
         </p>
@@ -172,13 +172,13 @@
           <!-- قائمة الأقسام الفرعية عند اختيار التخصيص -->
           <div id="sectionSelectContainer" class="mt-3 d-none">
             <label class="form-label small fw-bold text-muted">اختر القسم المستهدف :</label>
-            <select id="sectionPicker" class="form-select rounded-3 py-2" onchange="updateQuestionCounts()"><option value="المعرب والمبني والنكرة والمعرفة">المعرب والمبني والنكرة والمعرفة (15 سؤالًا)</option><option value="المرفوعات والنواسخ">المرفوعات والنواسخ (15 سؤالًا)</option><option value="منصوبات الأسماء">منصوبات الأسماء (10 سؤالًا)</option><option value="مجرورات الأسماء">مجرورات الأسماء (5 سؤالًا)</option><option value="إعراب الفعل المضارع">إعراب الفعل المضارع (5 سؤالًا)</option><option value="التوابع">التوابع (2 سؤالًا)</option><option value="الأساليب النحوية">الأساليب النحوية (2 سؤالًا)</option><option value="الجمل وأشباه الجمل">الجمل وأشباه الجمل (1 سؤالًا)</option><option value="علم الصرف">علم الصرف (3 سؤالًا)</option><option value="الأدب العربي">الأدب العربي (2 سؤالًا)</option><option value="البلاغة والنقد">البلاغة والنقد (2 سؤالًا)</option><option value="العروض والقافية">العروض والقافية (2 سؤالًا)</option><option value="علم اللغة والمعاجم">علم اللغة والمعاجم (2 سؤالًا)</option><option value="المهارات اللغوية والإملاء والترقيم">المهارات اللغوية والإملاء والترقيم (1 سؤالًا)</option><option value="طرائق التدريس">طرائق التدريس (3 سؤالًا)</option></select>
+            <select id="sectionPicker" class="form-select rounded-3 py-2" onchange="updateQuestionCounts()"></select>
           </div>
         </div>
 
         <!-- عدد الأسئلة -->
         <div class="col-md-6">
-          <label class="form-label fw-bold fs-6">
+          <label for="topicPicker" class="form-label">الموضوع (اختياري)</label><select id="topicPicker" class="form-select mb-3" onchange="updateQuestionCounts()"><option value="all">جميع الموضوعات</option></select><label class="form-label fw-bold fs-6">
             <i class="bi bi-list-check text-primary ms-1"></i> عدد الأسئلة :
           </label>
           <div class="row g-2">
@@ -351,13 +351,14 @@
   <!-- Bootstrap 5 JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-  <script src="naba-questions.js"></script>
+  <script src="kanz-questions.js"></script>
   <script>
-    /* بنك الأسئلة الشامل (70 سؤالاً مستخرجاً من الملزمة مع مفاتيح الإجابة الصحيحة) */
+    /* بنك الأسئلة الشامل (1137 سؤالًا للقراءة، منها 1123 متاحة للاختبارات مستخرجاً من الملزمة مع مفاتيح الإجابة الصحيحة) */
     /* ans: 0 = (أ), 1 = (ب), 2 = (جـ), 3 = (د) */
+    const kanzEscape=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));
     const charBadges = ["(أ)", "(ب)", "(جـ)", "(د)"];
 
-    const accountBank='naba';
+    const accountBank='kanz';
     FtmAccount.setBank(accountBank);
     let accountTestId=null;
     let accountSubmitted=false;
@@ -374,6 +375,9 @@
       updateQuestionCounts();
     });
 
+    function kanzPool(){const sec=document.getElementById("typeSection").checked?document.getElementById("sectionPicker").value:"all",topic=document.getElementById("topicPicker").value;return questionsDatabase.filter(q=>q.quizEligible&&(sec==="all"||q.sec===sec)&&(topic==="all"||q.topic===topic));}
+    function kanzTopics(){const el=document.getElementById("topicPicker"),old=el.value,sec=document.getElementById("typeSection").checked?document.getElementById("sectionPicker").value:"all";el.replaceChildren(new Option("جميع الموضوعات","all"));[...new Set(questionsDatabase.filter(q=>q.quizEligible&&(sec==="all"||q.sec===sec)).map(q=>q.topic))].sort((a,b)=>a.localeCompare(b,"ar")).forEach(t=>el.add(new Option(t,t)));el.value=[...el.options].some(o=>o.value===old)?old:"all";}
+    Object.entries(sectionNames).forEach(([id,name])=>document.getElementById("sectionPicker").add(new Option(name,id)));
     function handleTypeChange() {
       const isSection = document.getElementById("typeSection").checked;
       const container = document.getElementById("sectionSelectContainer");
@@ -386,11 +390,10 @@
     }
 
     function updateQuestionCounts() {
+      kanzTopics();
       const isSection = document.getElementById("typeSection").checked;
       const selectedSec = document.getElementById("sectionPicker").value;
-      const pool = isSection 
-        ? questionsDatabase.filter(q => q.sec === selectedSec)
-        : questionsDatabase;
+      const pool = kanzPool();
 
       const totalAvail = pool.length;
       document.getElementById("allCountLabel").textContent = `كل الأسئلة المتاحة (${totalAvail} سؤالاً)`;
@@ -409,9 +412,7 @@
     function startQuiz() {
       const isSection = document.getElementById("typeSection").checked;
       const selectedSec = document.getElementById("sectionPicker").value;
-      let pool = isSection 
-        ? questionsDatabase.filter(q => q.sec === selectedSec)
-        : questionsDatabase;
+      const pool = kanzPool();
 
       // تحديد العدد المطلوب
       const countVal = document.querySelector('input[name="qCount"]:checked').value;
@@ -422,7 +423,7 @@
 
       // اختيار عشوائي للأسئلة
       const shuffled = shuffleArray(pool);
-      currentQuestions = shuffled.slice(0, targetCount);
+      if(!pool.length){alert("لا توجد أسئلة اختبار متاحة في هذا الاختيار");return;}currentQuestions = shuffled.slice(0, targetCount);
       accountTestId=crypto.randomUUID();accountSubmitted=false;
       userAnswers = {};
 
@@ -460,7 +461,7 @@
                      onchange="onSelectOption(${index}, ${optIndex})">
               <label class="option-label" for="opt_${index}_${optIndex}">
                 <span class="option-char-badge">${charBadges[optIndex]}</span>
-                <span class="option-text">${opt}</span>
+                <span class="option-text">${kanzEscape(opt)}</span>
               </label>
             </div>
           `;
@@ -471,7 +472,7 @@
             <span class="fw-bold fs-6 text-primary">السؤال رقم (${index + 1})</span>
             <span class="badge-section">${sectionNames[q.sec] || q.sec}</span>
           </div>
-          <p class="fs-5 fw-semibold mb-4 text-dark">${q.q}</p>
+          <p class="fs-5 fw-semibold mb-4 text-dark">${kanzEscape(q.q)}</p>
           <div class="row g-2">
             ${optionsHtml}
           </div>
@@ -666,7 +667,7 @@
             <div class="col-md-6">
               <div class="p-2 px-3 rounded-3 d-flex align-items-center" style="${optStyle}">
                 <span class="fw-bold ms-2">${charBadges[oIdx]}</span>
-                <span>${opt}</span>
+                <span>${kanzEscape(opt)}</span>
                 ${iconMark}
               </div>
             </div>
@@ -681,7 +682,7 @@
             </div>
             ${statusBadge}
           </div>
-          <p class="fs-6 fw-bold mb-3">${q.q}</p>
+          <p class="fs-6 fw-bold mb-3">${kanzEscape(q.q)}</p>
           <div class="row g-2">
             ${optsHtml}
           </div>
