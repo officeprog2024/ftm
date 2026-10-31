@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدليل الشامل لاختبار الرخصة المهنية - لغة عربية 2</title>
+    <!-- Bootstrap 5 RTL CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.rtl.min.css">
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --primary-hover: #172554;
+            --secondary-color: #d97706;
+            --accent-color: #0d9488;
+            --bg-light: #f8fafc;
+            --card-border: #e2e8f0;
+            --text-dark: #0f172a;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+            color: #ffffff;
+            padding: 3rem 1rem;
+            border-bottom: 4px solid var(--secondary-color);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .badge-tag {
+            background-color: rgba(217, 119, 6, 0.2);
+            color: #fef08a;
+            border: 1px solid var(--secondary-color);
+            padding: 0.35rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        .accordion-button {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            background-color: #ffffff;
+            padding: 1.25rem 1.5rem;
+            border-radius: 12px !important;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.3s ease;
+        }
+
+        .accordion-button:not(.collapsed) {
+            color: #ffffff;
+            background: linear-gradient(90deg, var(--primary-color) 0%, #2563eb 100%);
+            box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+        }
+
+        .accordion-button::after {
+            margin-right: auto;
+            margin-left: 0;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+
+        .accordion-item {
+            border: 1px solid var(--card-border);
+            border-radius: 12px !important;
+            margin-bottom: 1.25rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .accordion-body {
+            background-color: #ffffff;
+            padding: 2rem;
+        }
+
+        .section-header {
+            color: var(--primary-color);
+            border-right: 4px solid var(--secondary-color);
+            padding-right: 0.75rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .concept-box {
+            background-color: #f1f5f9;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin-bottom: 1rem;
+            border-right: 3px solid var(--accent-color);
+        }
+
+        .curriculum-link {
+            background-color: #eff6ff;
+            border: 1px dashed #3b82f6;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .question-card {
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-top: 1.25rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+        }
+
+        .question-title {
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            text-align: right;
+            padding: 0.6rem 1rem;
+            margin: 0.35rem 0;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            background-color: #f8fafc;
+            color: #334155;
+            font-weight: 600;
+            pointer-events: none;
+        }
+
+        .option-btn.correct {
+            background-color: #dcfce7;
+            border-color: #22c55e;
+            color: #15803d;
+        }
+
+        .explanation-box {
+            background-color: #f0fdf4;
+            border: 1px solid #86efac;
+            border-radius: 6px;
+            padding: 0.75rem 1rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+            color: #166534;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: -25px auto 30px auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-input {
+            border-radius: 50px;
+            padding: 0.9rem 1.5rem 0.9rem 3rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 2px solid #e2e8f0;
+            font-size: 1.05rem;
+        }
+
+        .control-btns .btn {
+            border-radius: 20px;
+            font-weight: 600;
+            padding: 0.4rem 1.2rem;
+        }
+
+        .table-custom {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .table-custom th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero Header -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <span class="badge-tag mb-3 d-inline-block"><i class="fas fa-graduation-cap me-1"></i> هيئة تقويم التعليم والتدريب - قياس</span>
+            <h1 class="hero-title display-5 mb-3">الدليل الشامل لمعايير الرخصة المهنية (لغة عربية 2)</h1>
+            <p class="lead text-light opacity-90 mx-auto" style="max-width: 800px;">
+                تقرير متعمق ومستفيض يربط المفاهيم البلاغية والنحوية والأدبية بمعايير اختبار الرخصة المهنية ومناهج المرحلة الثانوية في المملكة العربية السعودية.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container my-4">
+
+        <!-- Controls Section -->
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6 mb-2 mb-md-0">
+                <div class="input-group">
+                    <input type="text" id="searchInput" class="form-control search-input" placeholder="بحث في الموضوعات أو المفاهيم أو الأسئلة...">
+                </div>
+            </div>
+            <div class="col-md-6 text-md-end control-btns">
+                <button class="btn btn-outline-primary me-2" onclick="toggleAllAccordions(true)"><i class="fas fa-folder-open me-1"></i> فتح الكل</button>
+                <button class="btn btn-outline-secondary" onclick="toggleAllAccordions(false)"><i class="fas fa-folder me-1"></i> إغلاق الكل</button>
+            </div>
+        </div>
+
+        <!-- Accordion Container -->
+        <div class="accordion" id="mainAccordion">
+
+            <!-- TOPIC 1: البلاغة -->
+            <div class="accordion-item search-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-feather-alt text-warning me-2"></i> المحور الأول: أقسام علوم البلاغة (المعاني، البيان، البديع)
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        
+                        <h4 class="section-header">1. علم المعاني (تطابق الكلام لمقتضى الحال)</h4>
+                        <p>يهتم علم المعاني بالبحث عن أحوال اللفظ العربي التي بها يطابق مقتضى الحال. ومن أهم أبوابه التي يركز عليها اختبار الرخصة المهنية ومقررات البلاغة بالمرحلة الثانوية (الكفايات اللغوية/البلاغة والنقد):</p>
+                        
+                        <div class="concept-box">
+                            <h5 class="fw-bold text-dark"><i class="fas fa-angle-left text-primary me-1"></i> الخبر والإنشاء</h5>
+                            <ul>
+                                <li><strong>الخبر:</strong> كلام يحتمل الصدق أو الكذب لذاته. وله ثلاثة أضرب:
+                                    <ul>
+                                        <li><em>ابتدائي:</em> خالي التوكيد (للمخاطب خالي الذهن) -> <code>الجوُّ جميلٌ</code>.</li>
+                                        <li><em>طلبي:</em> بمؤكد واحد (للمخاطب المتردد) -> <code>إنّ الجوَّ جميلٌ</code>.</li>
+                                        <li><em>إنكاري:</em> بمؤكدين أو أكثر (للمخاطب المنكر) -> <code>واللهِ إنّ الجوَّ لجميلٌ</code>.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>الإنشاء:</strong> كلام لا يحتمل الصدق والكذب. وينقسم إلى:
+                                    <ul>
+                                        <li><em>طلبي:</em> (الأمر، النهي، الاستفهام، النداء، التمني بـ "ليت").</li>
+                                        <li><em>غير طلبي:</em> (التعجب، القسم، أفعال المدح والذم، التجي بـ "لعّل" و"عسى"، العقود).</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="concept-box">
+                            <h5 class="fw-bold text-dark"><i class="fas fa-angle-left text-primary me-1"></i> القصر (الحصر) والتقديم والتأخير</h5>
+                            <p>تخصيص أمر بأمر بطريق مخصوص. من طرقه: النفي والاستثناء (ما جاء إلا عليّ)، إنما (إنما العلمُ نورٌ)، العطف بـ (لا، بل، لكن)، وتقديم ما حقه التأخير (إياك نعبد).</p>
+                        </div>
+
+                        <h4 class="section-header">2. علم البيان (إيراد المعنى الواحد بطرق مختلفة)</h4>
+                        <p>يدرس الصور الخيالية وكيفية التعبير عن المعنى بأساليب متنوعة في الوضوح والشفافية:</p>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-custom text-center align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>الفن البياني</th>
+                                        <th>التعريف والأركان</th>
+                                        <th>مثال توضيحي</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold">التشبيه</td>
+                                        <td>تشبيه شيء بشيء في صفة مشتركة. أركانه: (مشبه، مشبه به، أداة تشبيه، وجه شبه). ينقسم إلى: بليغ (حذف الأداة والوجه)، مجمل، مفصل، تمثيلي، وضمني.</td>
+                                        <td>العلمُ نورٌ (تشبيه بليغ)</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">الاستعارة</td>
+                                        <td>تشبيه حذف أحد طرفيه الرئيسيّين (المشبه أو المشبه به).
+                                            <br>• <strong>تصريحية:</strong> صُرّح فيها بالمشبه به.
+                                            <br>• <strong>مكنية:</strong> حُذف فيها المشبه به ورمز له بشيء من لوازمه.</td>
+                                        <td>• "واعتصموا بحبل الله" (تصريحية: شبه الدين بالحبل).<br>• "والصبح إذا تنفس" (مكنية: شبه الصبح بإنسان يتنفس).</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">المجاز المرسل</td>
+                                        <td>كلمة استُعملت في غير معناها الأصلي لعلاقة غير المشابهة (مع قرينة مانعة من إرادة المعنى الأصلي). علاقاته: (الجزئية، الكلية، السببية، المسببية، اعتبار ما كان، اعتبار ما سيكون، المحلية، الحالية).</td>
+                                        <td>"قبضنا على عين من عيون الأعداء" (علاقة جزئية: أطلق العين وأراد الجاسوس).</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold">الكناية</td>
+                                        <td>لفظ أُطلق وأُريد به لازم معناه مع جواز إرادة المعنى الأصلي. أنواعها: كناية عن صفة، كناية عن موصوف، كناية عن نسبة.</td>
+                                        <td>"فلانٌ طويلُ النجاد، رَفيعُ العِماد" (كناية عن صفة الشجاعة والسؤدد).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="section-header">3. علم البديع (تحسين الكلام وتزيينه)</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card p-3 mb-3 border-start border-4 border-info">
+                                    <h6 class="fw-bold text-info"><i class="fas fa-magic me-1"></i> المحسنات المعنوية:</h6>
+                                    <ul>
+                                        <li><strong>الطباق:</strong> إيجاب (أبيض / أسود) أو سلب (يعلمون / لا يعلمون).</li>
+                                        <li><strong>المقابلة:</strong> التضاد بين جملتين أو أكثر بالترتيب (ويُحلّ لهم الطيبات ويُحرّم عليهم الخبائث).</li>
+                                        <li><strong>التورية:</strong> لفظ له معنيان: قريب قريب الظهور غير مراد، وبعيد خفي هو المراد.</li>
+                                        <li><strong>مراعاة النظير:</strong> الجمع بين أمور تتناسب لا على سبيل التضاد (السيف والرمح، القلم والقرطاس).</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card p-3 mb-3 border-start border-4 border-warning">
+                                    <h6 class="fw-bold text-warning"><i class="fas fa-music me-1"></i> المحسنات اللفظية:</h6>
+                                    <ul>
+                                        <li><strong>الجناس:</strong> توافق اللفظين في النطق واختلافهما في المعنى (تام: صليت المغرب في المغرب / ناقص: خيل وثيل).</li>
+                                        <li><strong>السجع:</strong> توافق الفواصل في الحرف الاخير في النثر (إنكم لتكثرون عند الفزع، وتقلون عند الطمع).</li>
+                                        <li><strong>التصريع:</strong> تشابه نهاية الشطر الأول مع نهاية الشطر الثاني في البيت الأول من القصيدة.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="curriculum-link">
+                            <h6 class="fw-bold text-primary"><i class="fas fa-book-open me-2"></i> الربط بمناهج المرحلة الثانوية (نظام المسارات):</h6>
+                            <p class="mb-0">يتناول مقرر **الدراسات البلاغية والنقدية** ومجالات **الكفايات اللغوية** التفريق بين الصورة الخيالية والمعنى المباشر، وتطبيق تحليل النصوص الشعرية (مثل قصائد المتنبي والبارودي) لاستخراج أضرب الخبر، ونوع الاستعارات، وتذوق الجمال البديعي وتأثيره في متلقي النص.</p>
+                        </div>
+
+                        <!-- Questions Section -->
+                        <h4 class="section-header"><i class="fas fa-question-circle me-1"></i> أسئلة محاكية لاختبار الرخصة المهنية (تخصص لغة عربية 2)</h4>
+                        
+                        <!-- Question 1 -->
+                        <div class="question-card">
+                            <div class="question-title">س1: قال تعالى: ﴿يَقُولُونَ بِأَفْوَاهِهِم مَّا لَيْسَ فِي قُلُوبِهِمْ﴾. المحسن البديعي والعلاقة المجازية في كلمة (بأفواههم) على التوالي:</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) طباق - مجاز مرسل علاقته الجزئية</div>
+                                <div class="option-btn correct">ب) طباق - مجاز مرسل علاقته الكلية</div>
+                                <div class="option-btn">ج) مقابلة - استعارة تصريحية</div>
+                                <div class="option-btn">د) جناس - مجاز مرسل علاقته المحلية</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                بين (أفواههم) و (قلوبهم) طباق معنوي بين الظاهر والباطن. أما استخدام كلمة "أفواههم" فهو مجاز مرسل علاقته <strong>الكلية</strong> لأن الإنسان يتكلم ببعض الفم (اللسان/الشفتين) ولكنه أطلق الكل (الأفواه) وأراد الجزء. فالإجابة الصحيحة هي (ب).
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="question-card">
+                            <div class="question-title">س2: قال الشاعر: "أقولُ وقد شَنّوا إلى الحربِ غارةً: دَعوني فإنّي آكِلٌ عَيْشاً وبَقْلاً". التورية في البيت تكمن في كلمة:</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) الحرب</div>
+                                <div class="option-btn">ب) غارة</div>
+                                <div class="option-btn correct">ج) عيشاً</div>
+                                <div class="option-btn">د) بقلاً</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                التورية في كلمة (عيشاً)؛ فالمعنى القريب المتبادر للذهن بسبب القرينة (بقلاً) هو "الخبز أو الطعام"، أما المعنى البعيد المراد فهو "الحياة والعيش والنجاة بنفسه من الحرب".
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOPIC 2: قواعد الأعداد -->
+            <div class="accordion-item search-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        <i class="fas fa-sort-numeric-up text-warning me-2"></i> المحور الثاني: أحكام وقواعد الأعداد (التذكير والتأنيث والإعراب والتمييز)
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        
+                        <p class="lead">تُعد قواعد العدد من أكثر الأبواب وروداً في اختبارات الرخصة المهنية، وتتطلب فهماً دقيقاً لمطابقة المعدود وإعراب العدد وتحديد نوع تمييزه.</p>
+
+                        <h4 class="section-header">1. التذكير والتأنيث حسب مجموعات الأعداد</h4>
+                        
+                        <div class="concept-box">
+                            <h6 class="fw-bold text-primary">أ) العددان (1 - 2):</h6>
+                            <p>يوافقان المعدود دائماً في التذكير والتأنيث، ولا تمييز لهما (يُذكر المعدود أولاً ويعرب العدد نعتاً).<br>
+                            مثال: <code>رجلٌ واحدٌ / امرأتان اثنتان</code>.</p>
+
+                            <h6 class="fw-bold text-primary">ب) الأعداد (3 - 9):</h6>
+                            <p>تخالف المعدود دائماً (تذكير المعدود يُأنث العدد والعكس)، سواء كانت مفردة أو مركبة أو معطوفة.<br>
+                            مثال: <code>ثلاثةُ رجالٍ / ثلاثُ طالباتٍ</code>.</p>
+
+                            <h6 class="fw-bold text-primary">ج) العدد (10):</h6>
+                            <ul>
+                                <li><strong>إذا كان مفرداً:</strong> يخالف المعدود -> <code>عشرةُ رجالٍ / عشرُ نساءٍ</code>.</li>
+                                <li><strong>إذا كان مركباً (11 - 19):</strong> يوافق المعدود -> <code>أحدَ عشرَ كوكباً / ثلاثَ عشرةَ طائرةً</code>.</li>
+                            </ul>
+
+                            <h6 class="fw-bold text-primary">د) ألفاظ العقود (20 - 90) والأعداد (100 و 1000 ومضاعفاتها):</h6>
+                            <p> تلزم حالة واحدة مع المذكر والمؤنث. 
+                            مثال: <code>عشرون رجلاً / عشرون امرأة / ألفُ طالبٍ / ألفُ طالبةٍ</code>.</p>
+                        </div>
+
+                        <h4 class="section-header">2. أحكام تمييز العدد (المعدود)</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-custom text-center align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>مجموعة الأعداد</th>
+                                        <th>حالة التمييز (المعدود)</th>
+                                        <th>مثال إعرابي</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>من 3 إلى 10</td>
+                                        <td>جمع مجرور بالإضافة</td>
+                                        <td>سخرها عليهم <strong>سَبْعَ لَيَالٍ وَثَمَانِيَةَ أَيَّامٍ</strong> (أيام: مضاف إليه/تمييز مجرور)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>من 11 إلى 99</td>
+                                        <td>مفرد منصوب</td>
+                                        <td>إني رأيت <strong>أَحَدَ عَشَرَ كَوْكَباً</strong> (كوكباً: تمييز منصوب بالفتحة)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>100 و 1000 ومضاعفاتهما</td>
+                                        <td>مفرد مجرور بالإضافة</td>
+                                        <td>في كل سنبلة <strong>مِائَةُ حَبَّةٍ</strong> (حبة: مضاف إليه/تمييز مجرور)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="section-header">3. إعراب الأعداد وقواعد خاصة</h4>
+                        <div class="concept-box">
+                            <ul>
+                                <li><strong>الأعداد المركبة (11-19):</strong> تُبنى على فتح الجزأين في محل (رفع أو نصب أو جر)، باستثناء العدد (12): الجزء الأول (اثنا/اثنتا) يُعرب إعراب المثنى بالألف رفعاً وبالياء نصباً وجراً، والجزء الثاني (عشر/عشرة) عدد مبني على الفتح لا محل له من الإعراب.</li>
+                                <li><strong>شين كلمة (عشرة):</strong> تكون مفتوحة مع المذكر (عَشَر) وساكنة مع المؤنث (عَشْر).</li>
+                                <li><strong>صياغة العدد على وزن (فاعِل):</strong> يوافق المعدود مطلقاً (القاموس الخامس، المقالة الخامسة عشرة).</li>
+                            </ul>
+                        </div>
+
+                        <div class="curriculum-link">
+                            <h6 class="fw-bold text-primary"><i class="fas fa-book-open me-2"></i> الربط بالمناهج الثانوية:</h6>
+                            <p class="mb-0">يُدَرَّس باب "العدد وتطبيقاته" في مقرر **الكفايات اللغوية 1 و 2 (مسارات)** وتستهدف المهارة قدرة الطالب والمعلم على كتابة الأرقام بالكلمات العربية الصحيحة في النصوص الوظيفية والإدارية والتعبير القياسي.</p>
+                        </div>
+
+                        <!-- Questions Section -->
+                        <h4 class="section-header"><i class="fas fa-question-circle me-1"></i> أسئلة محاكية لاختبار الرخصة المهنية</h4>
+
+                        <!-- Question 1 -->
+                        <div class="question-card">
+                            <div class="question-title">س1: اختر الجملة الصحيحة كتابةً وإعراباً مما يلي: "في المكتبة (...) كتاباً و (...) مجلةً":</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) إثنا عشرَ / خمسُ عشرةَ</div>
+                                <div class="option-btn correct">ب) اثنا عشرَ / وخمسَ عشرةَ</div>
+                                <div class="option-btn">ج) اثني عشرَ / وخمسةَ عشرَ</div>
+                                <div class="option-btn">د) اثنتا عشرةَ / وخمسُ عشرةَ</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                كلمة (كتاب) مذكر؛ فالعدد 12 يوافقه في الجزأين (اثنا عشر)، وحيث إنه مبتدأ مؤخر فيعرب بالألف (اثنا) مبني على الفتح بالجزأين. وكلمة (مجلة) مؤنث؛ فالعدد (15) الجزء الأول منه يخالف (خمسَ) والجزء الثاني يوافق (عشرةَ) فتصبح (خمسَ عشرةَ) مبني على فتح الجزأين معطوف. الاختيار الصحيح (ب).
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="question-card">
+                            <div class="question-title">س2: "قَرَأْتُ 25 قصيدةً". عند تحويل الرقم إلى حروف عربية تكون الصياغة الصحيحة:</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) خَمْسَةً وَعِشْرُونَ قصيدةً</div>
+                                <div class="option-btn">ب) خَمْسٌ وَعِشْرُونَ قصيدةً</div>
+                                <div class="option-btn correct">ج) خَمْساً وَعِشْرِينَ قصيدةً</div>
+                                <div class="option-btn">د) خَمْسَةً وَعِشْرِينَ قصيدةً</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                المعدود (قصيدة) مؤنث. الجزء الأول (5) يخالف فيأتي مذكر (خَمْساً)، وبما أنه مفعول به فهو منصوب بالتنوين. المعطوف (عشرين) يتبعه بالنصب بالياء لأنه ملحق بجمع المذكر السالم. الخيار الصحيح (ج).
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOPIC 3: الأدوات التي تجزم فعلين -->
+            <div class="accordion-item search-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="fas fa-code-branch text-warning me-2"></i> المحور الثالث: الأدوات التي تجزم فعلين (أسلوب الشرط)
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        
+                        <p class="lead">يتكون أسلوب الشرط الجازم من: (أداة الشرط + فعل الشرط + جواب الشرط). وأدوات الشرط الجازمة تجزم فعلين مضارعين: الأول فعل الشرط والثاني جواب الشرط وجزاؤه.</p>
+
+                        <h4 class="section-header">1. أدوات الشرط الجازمة ودلالاتها</h4>
+                        <div class="concept-box">
+                            <ul>
+                                <li><strong>إنْ ، إذْما:</strong> حرفان للربط وتعليق الجواب على الشرط (لا محل لهما من الإعراب).</li>
+                                <li><strong>مَنْ:</strong> اسم شرط للعاقل (في محل رفع مبتدأ أو مفعول به حسب الفعل).</li>
+                                <li><strong>ما ، مَهْما:</strong> اسما شرط لغير العاقل.</li>
+                                <li><strong>مَتى ، أيّانَ:</strong> اسما شرط للزمان (في محل نصب ظرف زمان).</li>
+                                <li><strong>أَيْنَ ، أَيْنَما ، أَنَّى ، حَيْثُما:</strong> أسماء شرط للمكان (في محل نصب ظرف مكان).</li>
+                                <li><strong>كَيْفَما:</strong> اسم شرط للحال (في محل نصب حال).</li>
+                                <li><strong>أَيّ:</strong> بحسب ما تضاف إليه (تكون للعاقل، لغير العاقل، للزمان، للمكان) وهي الأداة الوحيدة المعربة من بين أسماء الشرط.</li>
+                            </ul>
+                        </div>
+
+                        <h4 class="section-header">2. علامات جزم الفعل المضارع</h4>
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-custom text-center align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>نوع الفعل المضارع</th>
+                                        <th>علامة الجزم</th>
+                                        <th>مثال</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>صحيح الآخر</td>
+                                        <td>السكون</td>
+                                        <td>إنْ تَهْمِلْ <strong>تَفْشَلْ</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td>معتل الآخر (بالألف/الواو/الياء)</td>
+                                        <td>حذف حرف العلة</td>
+                                        <td>مَنْ <strong>يَتَّقِ</strong> اللَّهَ <strong>يَجْعَلْ</strong> لَهُ مَخْرَجاً</td>
+                                    </tr>
+                                    <tr>
+                                        <td>من الأفعال الخمسة</td>
+                                        <td>حذف النون</td>
+                                        <td>وما <strong>تَفْعَلُوا</strong> مِنْ خَيْرٍ <strong>يَعْلَمْهُ</strong> اللَّهُ</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h4 class="section-header">3. حالات اقتران جواب الشرط بالفاء وجوباً</h4>
+                        <p>يجب اقتران جواب الشرط بالفاء (فاء الجزاء) إذا لم يصلح الجواب لأن يكون شرطاً، وتجمع في بيت الشعر الشهير:</p>
+                        <div class="alert alert-secondary text-center fw-bold fs-5 shadow-sm">
+                            "اسْمِيَّةٌ طَلَبِيَّةٌ وَبِبَجَامِدٍ ... وَبِمَا وَقَدْ وَبِلَنْ وَبِالتَّسْفِيسِ"
+                        </div>
+
+                        <div class="concept-box">
+                            <ol>
+                                <li><strong>الجملة الاسمية:</strong> (إن تنصروا الله <u>فالله ناصركم</u>).</li>
+                                <li><strong>الجملة الطلبية:</strong> (أمر، نهي، استفهام...) مثل: (إن حَيّاك أحدٌ <u>فَرُدَّ التحيةَ</u>).</li>
+                                <li><strong>الفعل الجامد:</strong> (عسى، ليس، نِعْمَ، بِئْسَ) مثل: (من غَشَّنا <u>فَلَيْسَ مِنّا</u>).</li>
+                                <li><strong>المسبوق بـ (ما، قد، لن):</strong> (من يطع الرسول <u>فقد أطاع الله</u>).</li>
+                                <li><strong>المسبوق بالتسويف (السين أو سوف):</strong> (ومن يبتغ غير الإسلام ديناً <u>فلن يُقبل منه</u>).</li>
+                            </ol>
+                            <p class="text-danger mb-0"><strong>ملاحظة إعرابية هامة:</strong> إذا اقترن جواب الشرط بالفاء، تكون الجملة الاسمية أو الفعلية بعد الفاء في محل جزم جواب الشرط.</p>
+                        </div>
+
+                        <div class="curriculum-link">
+                            <h6 class="fw-bold text-primary"><i class="fas fa-book-open me-2"></i> التطبيق بالمناهج الدراسية:</h6>
+                            <p class="mb-0">يُعد "أسلوب الشرط وأدواته" من الركائز الأساسية في النحو الوظيفي بـ **الكفايات اللغوية 3 و 4**، ويُدرّس للطلاب كيفية الربط بين السبب والنتيجة وإعراب الجمل الشرطية وتوظيف الفاء الرابطة.</p>
+                        </div>
+
+                        <!-- Questions Section -->
+                        <h4 class="section-header"><i class="fas fa-question-circle me-1"></i> أسئلة محاكية لاختبار الرخصة المهنية</h4>
+
+                        <!-- Question 1 -->
+                        <div class="question-card">
+                            <div class="question-title">س1: قال تعالى: ﴿وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ﴾. سبب اقتران جواب الشرط بالفاء وإعراب الجملة بعد الفاء هو:</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) جملة فعلية فعلها جامد - لا محل لها من الإعراب</div>
+                                <div class="option-btn correct">ب) جملة اسمية - في محل جزم جواب الشرط</div>
+                                <div class="option-btn">ج) جملة طلبية - في محل نصب خبر</div>
+                                <div class="option-btn">د) جملة اسمية - مرفوعة بالضمة</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                (هو حسبه) جملة اسمية من مبتدأ وخبر؛ لذا وجب اقتران الجواب بالفاء، وتعتبر الجملة الاسمية المقترنة بالفاء لأداة جازمة في محل جزم جواب الشرط. الإجابة (ب).
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="question-card">
+                            <div class="question-title">س2: حدد الأداة المعربة من بين أدوات الشرط الجازمة التالية:</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) متى</div>
+                                <div class="option-btn">ب) أينما</div>
+                                <div class="option-btn correct">ج) أيّ</div>
+                                <div class="option-btn">د) مهما</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                جميع أسماء الشرط مبنية (مثل متى، أينما، مهما، من، ما) ما عدا <strong>(أَيّ)</strong> فهي معربة تظهر عليها الحركات الثلاث (أيُّ، أيَّ، أيِّ) بحسب موقعها في الجملة. الإجابة (ج).
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOPIC 4: المدارس الأدبية -->
+            <div class="accordion-item search-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <i class="fas fa-book-reader text-warning me-2"></i> المحور الرابع: المدارس الأدبية وتطور الشعر العربي الحديث
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        
+                        <p class="lead">يتطلب تخصص لغة عربية 2 إلماماً شاملاً بحركات التجديد والاتجاهات الأدبية الحديثة من المحافظة والاتباع إلى التجديد والواقعية.</p>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-custom align-middle">
+                                <thead>
+                                    <tr>
+                                        <th>المدرسة الأدبية</th>
+                                        <th>رادها وأبرز أعلامها</th>
+                                        <th>أهم الخصائص والمميزات الفنية</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="fw-bold text-primary">الإحياء والبعث (الكلاسيكية الجديدة)</td>
+                                        <td>محمود سامي البارودي، أحمد شوقي، حافظ إبراهيم، أحمد محرم.</td>
+                                        <td>
+                                            • محاكاة القدماء في الوزن والقافية والبدء بالغيص/التغزل.<br>
+                                            • اصطناع التقاليد البلاغية القديمة والجزالة اللغوية.<br>
+                                            • الانشغال بقضايا المجتمع والفتوحات الإسلامية.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">مدرسة الديوان</td>
+                                        <td>عباس محمود العقاد، إبراهيم المازني، عبدالرحمن شكري.</td>
+                                        <td>
+                                            • الشعر تعبير عن وجدان الشاعر والذاتية المفرطة.<br>
+                                            • الدعوة للوحدة العضوية (القصيدة كائن حي).<br>
+                                            • غلبة الجانب الفكري والذهني على الجانب العاطفي.<br>
+                                            • التجديد في القوافي (الشعر المرسل).
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">مدرسة أبوللو</td>
+                                        <td>أحمد زكي أبو شادي، إبراهيم ناجي، أبو القاسم الشابي.</td>
+                                        <td>
+                                            • التغني بالطبيعة والولوع بها والحنين لمواطن الذكريات.<br>
+                                            • استخدام التجربة الذاتية والرمز واستعمال الألفاظ استعمالاً جديداً في دلالاتها (عطر الخبر، الموسيقى النادية).<br>
+                                            • مسحة الحزن والتشاؤم والاستسلام للآلام.
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">مدرسة المهجر (الرومانسية)</td>
+                                        <td>إيليا أبو ماضي، جبران خليل جبران، ميخائيل نعيمة، رشيد أيوب.</td>
+                                        <td>
+                                            • النزعة الإنسانية والنزعة الروحية والتأمل في الكون.<br>
+                                            • المشاركة الوجدانية والميل للسلاسة واللغة الحية البسيطة.<br>
+                                            • التجديد في الأوزان والأشكال الشعرية (الموشحات والأغاني).
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="fw-bold text-primary">مدرسة الشعر الحر (الواقعية/تفعيلة)</td>
+                                        <td>بدر شاكر السياب، نازك الملائكة، صلاح عبدالصبور، أمل دنقل.</td>
+                                        <td>
+                                            • الاعتماد على التفعيلة كبناء موسيقي بدلاً من البحر والبيت ذي الشطرين.<br>
+                                            • التخلص من القافية الموحدة وتنوع الأسطر الشعرية.<br>
+                                            • الالتصاق بالواقع والرمز الأسطوري والتعبير عن قضايا الإنسان.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="curriculum-link">
+                            <h6 class="fw-bold text-primary"><i class="fas fa-book-open me-2"></i> الصلة بمناهج الثانوية:</h6>
+                            <p class="mb-0">مقرر **الدراسات الأدبية (ثاني وثالث ثانوي)** يخصص وحدات كاملة لمراحل الأدب الحديث، ودراسة نصوص نموذجية مثل "نهج البردة" لشوقي، و"صخرة الملتفى" لإبراهيم ناجي، ونصوص الشعر الحر لبدر شاكر السياب وغازي القصيبي.</p>
+                        </div>
+
+                        <!-- Questions Section -->
+                        <h4 class="section-header"><i class="fas fa-question-circle me-1"></i> أسئلة محاكية لاختبار الرخصة المهنية</h4>
+
+                        <!-- Question 1 -->
+                        <div class="question-card">
+                            <div class="question-title">س1: "طغيان الجانب الفكري والذهني والجفاف العاطفي" من العيوب التي أُخذت على شعر شعراء مدرسة:</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) أبوللو</div>
+                                <div class="option-btn correct">ب) الديوان</div>
+                                <div class="option-btn">ج) الإحياء والبعث</div>
+                                <div class="option-btn">د) المهجر</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                من أبرز السمات والنقد الموجه لمدرسة **الديوان** (العقاد والمازني وشكري) هو طغيان الفكر والعقلانية والذهنية الصارمة على قصائدهم مما جعلها تغلب عليها الجفاف العاطفي أحياناً. الخيار الصحيح (ب).
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="question-card">
+                            <div class="question-title">س2: تعد قصيدة "الكوليرا" للشاعر/ة (...) البداية الريادية والشرارة الأولى لظهور شعر التفعيلة (الشعر الحر) عام 1947م:</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) إيليا أبو ماضي</div>
+                                <div class="option-btn correct">ب) نازك الملائكة</div>
+                                <div class="option-btn">ج) صلاح عبدالصبور</div>
+                                <div class="option-btn">د) نزار قباني</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                تُجمع المصادر الأدبية والمناهج الثانوية على أن الشاعرة العراقية **نازك الملائكة** عبر قصيدتها "الكوليرا" (إلى جانب بدر شاكر السياب في قصيدته "هل كان حباً") هما الرائدان لظهور حركة الشعر الحر/التفعيلة. الخيار الصحيح (ب).
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOPIC 5: حروف الجر ومعانيها -->
+            <div class="accordion-item search-item">
+                <h2 class="accordion-header" id="headingFive">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <i class="fas fa-link text-warning me-2"></i> المحور الخامس: دلالات ومعاني حروف الجر
+                    </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#mainAccordion">
+                    <div class="accordion-body">
+                        
+                        <p class="lead">تؤدي حروف الجر معانٍ فرعية وتتضمن دلالات بلاغية ونحوية دقيقة يركز عليها اختبار الرخصة المهنية لمعرفة القدرة على تحليل السياق.</p>
+
+                        <div class="concept-box mb-4">
+                            <h5 class="fw-bold text-primary mb-3">تفصيل معاني حروف الجر المقررة:</h5>
+
+                            <div class="mb-3">
+                                <strong class="text-dark fs-6">1. (مِنْ):</strong>
+                                <ul>
+                                    <li><strong>الابتداء (الزمكاني):</strong> سبحان الذي أسرى بعبده ليلاً <u>من</u> المسجد الحرام.</li>
+                                    <li><strong>التبعيض:</strong> <u>منهم</u> من كلم الله (أي بعضهم).</li>
+                                    <li><strong>بيان الجنس:</strong> فاجتنبوا الرجس <u>من</u> الأوثان.</li>
+                                    <li><strong>السببية والتعليل:</strong> مما خطيئاتهم أغرقوا.</li>
+                                    <li><strong>الزائدة:</strong> (ما جاءنا <u>من</u> بشير) للتوكيد بشرط سبق نفي أو استفهام ومجرورها نكرة.</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-3">
+                                <strong class="text-dark fs-6">2. (إِلى):</strong>
+                                <ul>
+                                    <li><strong>انتهاء الغاية (الزمانية أو المكانية):</strong> ثم أتموا الصيام <u>إلى</u> الليل.</li>
+                                    <li><strong>المصاحبة (بمعنى مَعَ):</strong> ولا تأكلوا أموالهم <u>إلى</u> أموالكم.</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-3">
+                                <strong class="text-dark fs-6">3. (عَنْ):</strong>
+                                <ul>
+                                    <li><strong>المجاوزة والابتعاد:</strong> سافرتُ <u>عن</u> المدينة.</li>
+                                    <li><strong>الخصوص والبدلية:</strong> واتقوا يوماً لا تجزي نفسٌ <u>عن</u> نفسٍ شيئاً.</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-3">
+                                <strong class="text-dark fs-6">4. (عَلى):</strong>
+                                <ul>
+                                    <li><strong>الاستعلاء الحقيقي أو المجازي:</strong> وعليها <u>وعلى</u> الفلك تُحملون.</li>
+                                    <li><strong>الظرفية (بمعنى فِي):</strong> ودخل المدينة <u>على</u> حينِ غفلةٍ من أهلها.</li>
+                                    <li><strong>السببية:</strong> ولتكبروا الله <u>على</u> ما هداكم.</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-3">
+                                <strong class="text-dark fs-6">5. (فِي):</strong>
+                                <ul>
+                                    <li><strong>الظرفية المكانية أو الزمانية:</strong> غُلبت الروم <u>في</u> أدنى الأرض.</li>
+                                    <li><strong>السببية والتعليل:</strong> دخلت امرأة النار <u>في</u> هرّة رَبَطَتْها.</li>
+                                    <li><strong>المعايّة والإستعلاء:</strong> ولأصلبنكم <u>في</u> جذوع النخل (أي على جذوع).</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-3">
+                                <strong class="text-dark fs-6">6. (الباء):</strong>
+                                <ul>
+                                    <li><strong>الإلصاق (حقيقي أو مجازي):</strong> أمسكتُ <u>بـ</u>يدك.</li>
+                                    <li><strong>الاستعانة:</strong> كتبتُ <u>بـ</u>القلم.</li>
+                                    <li><strong>السببية والتعليل:</strong> فبظلمٍ من الذين هادوا حرّمنا عليهم طيبات.</li>
+                                    <li><strong>القسم:</strong> أقسمُ <u>بـ</u>اللهِ.</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-3">
+                                <strong class="text-dark fs-6">7. (اللام):</strong>
+                                <ul>
+                                    <li><strong>الملكية:</strong> المالُ <u>لـ</u>زيد.</li>
+                                    <li><strong>الاستحقاق والاختصاص:</strong> الحمدُ <u>لـ</u>له / البابُ <u>لـ</u>لدار.</li>
+                                    <li><strong>التعليل:</strong> وإنه <u>لـ</u>حب الخير لشديد.</li>
+                                </ul>
+                            </div>
+
+                            <div class="mb-3">
+                                <strong class="text-dark fs-6">8. (رُبَّ):</strong>
+                                <ul>
+                                    <li>حرف جر شبيه بالزائد يفيد <strong>التكثير</strong> غالباً أو <strong>التقليل</strong> نادراً، ولا يدخل إلا على نكرة (رب ضارة نافعة).</li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="curriculum-link">
+                            <h6 class="fw-bold text-primary"><i class="fas fa-book-open me-2"></i> الربط بالمناهج الثانوية:</h6>
+                            <p class="mb-0">يُدَرَّس موضوع "حروف الجر ودلالاتها البلاغية والنحوية" ضمن وحدات **النحو والصرف والكفايات اللغوية بالمرحلة الثانوية**، للتأكيد على تذوق المعنى وعدم الاكتفاء بالإعراب الظاهري للحرف.</p>
+                        </div>
+
+                        <!-- Questions Section -->
+                        <h4 class="section-header"><i class="fas fa-question-circle me-1"></i> أسئلة محاكية لاختبار الرخصة المهنية</h4>
+
+                        <!-- Question 1 -->
+                        <div class="question-card">
+                            <div class="question-title">س1: قال النبي ﷺ: «دَخَلَتِ امْرَأَةٌ النَّارَ فِي هِرَّةٍ...». الحرف (فِي) في الحديث الشريف يفيد معنى:</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) الظرفية المكانية</div>
+                                <div class="option-btn correct">ب) السببية والتعليل</div>
+                                <div class="option-btn">ج) الاستعلاء</div>
+                                <div class="option-btn">د) التبعيض</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                المعنى السياقي للحرف (في) هنا هو **السببية والتعليل**، أي: بسبب هرة وحبسه لها. الخيار الصحيح (ب).
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="question-card">
+                            <div class="question-title">س2: قال تعالى: ﴿تَكادُ تَمَيَّزُ مِنَ الغَيْظِ﴾. المعنى الذي أفاده حرف الجر (مِنْ) هو:</div>
+                            <div class="options-group mt-2">
+                                <div class="option-btn">أ) ابتداء الغاية المكانية</div>
+                                <div class="option-btn">ب) التبعيض</div>
+                                <div class="option-btn correct">ج) السببية والتعليل</div>
+                                <div class="option-btn">د) بيان الجنس</div>
+                            </div>
+                            <div class="explanation-box">
+                                <strong><i class="fas fa-check-circle me-1"></i> الشرح والتوضيح:</strong> 
+                                المعنى المُراد هو: تتميز وتقطع بسبب الغيظ والحنق، فحرف (من) هنا يفيد **السببية والتعليل**. الخيار الصحيح (ج).
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-1 fw-bold text-white">الدليل التفاعلي لإعداد اختبار الرخصة المهنية - تخصص لغة عربية 2</p>
+            <small>تم إعداد هذا التقرير لخدمة المعلمين والمعلمات وفق أحدث المعايير ومناهج المرحلة الثانوية بالمملكة العربية السعودية.</small>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Interactive Script for Search and Toggle All -->
+    <script>
+        function toggleAllAccordions(open) {
+            const collapseElements = document.querySelectorAll('.accordion-collapse');
+            collapseElements.forEach(el => {
+                const bsCollapse = bootstrap.Collapse.getOrCreateInstance(el, { toggle: false });
+                if (open) {
+                    bsCollapse.show();
+                } else {
+                    bsCollapse.hide();
+                }
+            });
+        }
+
+        // Real-time Search functionality
+        document.getElementById('searchInput').addEventListener('keyup', function () {
+            const filter = this.value.toLowerCase().trim();
+            const items = document.querySelectorAll('.search-item');
+
+            items.forEach(function (item) {
+                const text = item.innerText.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
